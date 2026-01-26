@@ -1,0 +1,20 @@
+E-commerce Plan
+
+[] - Components
+   []  1- Navbar 
+   []  2- Footer
+[] - Pages
+   []  1- Home
+   []  2- About
+   []  3- Contact
+   []  4- Shop
+   []  5- Product
+   []  6- Cart
+   []  7- Checkout
+   []  8- Login
+   []  9- Register
+   []  10- Profile
+   []  11- Order
+   []  12- Orders
+   []  13- Dashboard
+   []  14- Settings     
