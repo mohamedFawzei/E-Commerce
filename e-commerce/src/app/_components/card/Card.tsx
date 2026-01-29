@@ -65,7 +65,7 @@ export default function Card() {
           <button
             key={category}
             onClick={() => handleCategoryChange(category)}
-            className={`whitespace-nowrap rounded-full text-sm font-semibold transition-all duration-300 border cursor-pointer flex-shrink-0 ${
+            className={`whitespace-nowrap rounded-full text-sm font-semibold transition-all duration-300 border cursor-pointer shrink-0 ${
               isMobile ? "px-2 py-1" : "px-6 py-2.5"
             } ${
               activeCategory === category

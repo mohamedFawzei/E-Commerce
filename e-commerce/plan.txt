@@ -18,3 +18,13 @@ E-commerce Plan
    []  12- Orders
    []  13- Dashboard
    []  14- Settings     
+
+
+
+        1-29-2026 12:42 PM
+               --- Navbar ---
+   * Edit Navbar width to be full screen *
+               --- Mega Menu ---
+   * Edit mega menu to be with categories in Api *
+   * Edit mega menu to be with sub categories in Api *
+   * Edit mega menu to be with products in Api *
