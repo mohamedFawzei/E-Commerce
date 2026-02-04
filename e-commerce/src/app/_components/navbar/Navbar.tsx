@@ -3,7 +3,7 @@
 import { Menu, ShoppingCart, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 import { cn } from "@/lib/utils";
 import MegaMenu from "./mega-menu";
@@ -11,9 +11,30 @@ import MobileMenu from "./mobile-menu";
 import NavLink from "./nav-link";
 import SearchBar from "./search-bar";
 
-export default function Navbar() {
+interface NavbarProps {
+  categories?: any[];
+  subCategories?: any[];
+}
+
+export default function Navbar({
+  categories = [],
+  subCategories = [],
+}: NavbarProps) {
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const groupedCategories = useMemo(() => {
+    if (!categories.length) return [];
+
+    return categories.map((category) => {
+      // Find subcategories where sub.category corresponds to category._id
+      const subs = subCategories.filter((sub) => sub.category === category._id);
+      return {
+        ...category,
+        subcategories: subs,
+      };
+    });
+  }, [categories, subCategories]);
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-white">
@@ -45,7 +66,7 @@ export default function Navbar() {
         {/* Center Section: Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-8 h-full">
           <NavLink href="/">Home</NavLink>
-
+          <NavLink href="/products">Products</NavLink>
           {/* Mega Menu Trigger */}
           <div
             className="flex h-full items-center"
@@ -64,11 +85,11 @@ export default function Navbar() {
             <MegaMenu
               isOpen={isMegaMenuOpen}
               onClose={() => setIsMegaMenuOpen(false)}
+              categories={groupedCategories}
             />
           </div>
 
           <NavLink href="/brands">Brands</NavLink>
-          <NavLink href="/products">Products</NavLink>
         </nav>
 
         {/* Right Section: Actions */}

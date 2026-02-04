@@ -1,22 +1,27 @@
 "use client";
 import { useState, useMemo } from "react";
-import Image from "next/image";
-
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useSwiperContext } from "../../context/SwiperContext";
-import StarRating from "./StarRating";
-import { useWindowSize } from "../../_hooks/useWindowSize";
+import { useWindowSize } from "@/app/_hooks/useWindowSize";
 import MobileCard from "./MobileCard";
+import ProductCard from "./ProductCard";
+import { Product } from "../types";
+import { useProductFilter } from "../hooks/useProductFilter";
 
-export default function Card() {
-  const { products, loading } = useSwiperContext();
-  const [activeCategory, setActiveCategory] = useState("All");
+interface ProductShowcaseProps {
+  products: Product[];
+}
+
+export default function ProductShowcase({
+  products = [],
+}: ProductShowcaseProps) {
+  const { activeCategory, setCategory } = useProductFilter("All");
   const [isAnimating, setIsAnimating] = useState(false);
   const { isMobile } = useWindowSize();
 
   // 1. Extract unique categories dynamically
   const categories = useMemo(() => {
+    if (!products) return ["All"];
     const cats = products
       .map((p) => p.category?.name)
       .filter((name): name is string => !!name);
@@ -34,22 +39,18 @@ export default function Card() {
     if (category === activeCategory) return;
     setIsAnimating(true);
     setTimeout(() => {
-      setActiveCategory(category);
+      setCategory(category);
       setIsAnimating(false);
     }, 300);
   };
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-      </div>
-    );
+  if (!products || products.length === 0) {
+    return null;
   }
 
   return (
-    <div className="w-full px-2">
-      <h2 className="text-4xl tracking-wider font-semibold text-black my-4">
+    <div className="w-full px-2 py-8">
+      <h2 className="text-3xl md:text-4xl tracking-wider font-semibold text-black my-4 px-2">
         Explore Our Products
       </h2>
       {/* Filter Bar */}
@@ -60,7 +61,7 @@ export default function Card() {
             : "flex flex-wrap justify-center md:justify-start items-center gap-4 my-5"
         }`}
       >
-        {categories.map((category , index) => (
+        {categories.map((category, index) => (
           <button
             key={index}
             onClick={() => handleCategoryChange(category)}
@@ -131,51 +132,7 @@ export default function Card() {
                     key={product._id || product.id || Math.random()}
                     className="h-[400px]! bg-white!"
                   >
-                    <div className="group cursor-pointer flex flex-col overflow-hidden">
-                      {/* Image & Button Container */}
-                      <div className="relative rounded-2xl overflow-hidden shadow-sm">
-                        <div className="relative aspect-square w-full overflow-hidden">
-                          <Image
-                            width={2000}
-                            height={2000}
-                            loading="lazy"
-                            src={product.imageCover}
-                            alt={product.title || "product"}
-                            className="object-contain object-center w-full h-full transition-transform duration-700 group-hover:scale-110 mix-blend-multiply dark:mix-blend-normal"
-                          />
-                        </div>
-
-                        {/* Add To Cart Button */}
-                        <div className="absolute bottom-0 left-0 right-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out">
-                          <button className="w-full bg-black text-white py-3 font-medium hover:bg-zinc-800 transition-colors cursor-pointer rounded-b-2xl">
-                            Add To Cart
-                          </button>
-                        </div>
-                      </div>
-
-                      {/* Content */}
-                      <div className="flex flex-col gap-1 px-1">
-                        <h3
-                          className="text-lg font-bold text-black line-clamp-1 text-left"
-                          title={product.title}
-                        >
-                          {product.title?.split(" ").slice(0, 3).join(" ") ||
-                            "Product Title"}
-                        </h3>
-
-                        <div className="flex items-center justify-between gap-3 text-md">
-                          <span className="text-red-500 font-bold">
-                            {product.price ? `${product.price} EGP` : "$0"}
-                          </span>
-                          <div className="flex items-center gap-1">
-                            <StarRating
-                              rating={product.ratingsAverage ?? 4.5}
-                              count={product.ratingsQuantity}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <ProductCard product={product} />
                   </SwiperSlide>
                 ))}
               </Swiper>

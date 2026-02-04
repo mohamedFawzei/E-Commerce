@@ -28,3 +28,31 @@ E-commerce Plan
    * Edit mega menu to be with categories in Api *
    * Edit mega menu to be with sub categories in Api *
    * Edit mega menu to be with products in Api *
+
+
+   Api Tasks 
+
+   * Authentication Tasks *
+   Login
+   Register
+   forgot-password
+   change-password
+   * Listing & Details *
+   Products [ X ]
+   Product Details 
+   Brands
+   Brand Details
+   Categories
+   Category Details
+   * Cart Operations *
+   Display 
+   Add 
+   Remove
+   Update
+   * Wishlist operations *
+   Display
+   Add 
+   Remove
+   *  Payment ways  *
+   Online
+   Cash

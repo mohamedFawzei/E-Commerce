@@ -3,10 +3,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
-import "swiper/css";
 import "swiper/css/pagination";
-
-import "../../css/swiper.css";
 
 // import required modules
 import { Autoplay, Pagination } from "swiper/modules";
@@ -51,8 +48,8 @@ export default function MySwiper() {
         modules={[Pagination, Autoplay]}
         className="mySwiper"
       >
-        {slider.map((item) => (
-          <SwiperSlide key={item.id}>
+        {slider.map((item, index) => (
+          <SwiperSlide key={index}>
             <Image
               src={item.image}
               alt={item.title}
