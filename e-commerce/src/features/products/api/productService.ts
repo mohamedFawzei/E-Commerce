@@ -1,5 +1,5 @@
 import { apiClient } from "@/services/api/client";
-import { ProductsResponse, Product } from "../types";
+import { ProductsResponse, Product } from "@/types/product";
 
 export const productService = {
   getAll: async (): Promise<Product[]> => {

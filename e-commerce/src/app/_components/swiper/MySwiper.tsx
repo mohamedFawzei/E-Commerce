@@ -56,7 +56,7 @@ export default function MySwiper() {
               width={2000}
               height={2000}
               className="object-cover object-top h-full w-full"
-              loading="lazy"
+              loading="eager"
             />
           </SwiperSlide>
         ))}

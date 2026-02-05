@@ -1,5 +1,9 @@
 import { apiClient } from "@/services/api/client";
-import { CategoriesResponse, SubCategoriesResponse, Category } from "../types";
+import {
+  CategoriesResponse,
+  SubCategoriesResponse,
+  Category,
+} from "@/types/category";
 
 export const categoryService = {
   getAll: async (): Promise<Category[]> => {

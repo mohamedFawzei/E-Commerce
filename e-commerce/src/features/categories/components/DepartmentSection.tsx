@@ -16,7 +16,7 @@ const DepartmentSection: React.FC<DepartmentSectionProps> = ({
   if (!category) return null;
 
   return (
-    <section className="py-8 px-4 sm:px-6 lg:px-8">
+    <section className="py-4 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div
           className={`flex flex-col ${
@@ -29,6 +29,7 @@ const DepartmentSection: React.FC<DepartmentSectionProps> = ({
               src={category.image}
               alt={category.name}
               fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
               className="object-cover"
               loading="lazy"
             />

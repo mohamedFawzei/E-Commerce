@@ -1,11 +1,10 @@
-import gsap from "gsap";
-import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import { ChevronRight, ExternalLink } from "lucide-react";
-import { Category } from "@/features/categories/types";
 import { useProductFilter } from "@/features/products/hooks/useProductFilter";
+import { Category } from "@/types/category";
+import gsap from "gsap";
+import { ChevronRight } from "lucide-react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 
 interface MegaMenuProps {
   isOpen: boolean;
@@ -173,6 +172,7 @@ export default function MegaMenu({
                           src={activeCategory.image}
                           alt={activeCategory.name}
                           fill
+                          sizes="(min-width: 1024px) 25vw, 50vw"
                           className="object-cover transition-transform duration-700 group-hover:scale-105"
                         />
                       ) : (
@@ -205,6 +205,7 @@ export default function MegaMenu({
                     src={activeCategory.image}
                     alt={activeCategory.name}
                     fill
+                    sizes="(min-width: 1024px) 75vw, 100vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 ) : (

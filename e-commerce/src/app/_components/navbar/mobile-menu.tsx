@@ -2,8 +2,6 @@
 
 import { DURATION, EASING } from "@/animations/core/config";
 import { gsap, useGsap } from "@/animations/hooks/useGsap";
-import MobileCategoriesDrawer from "@/components/navigation/MobileCategoriesDrawer";
-import { useCategories } from "@/features/categories/hooks/useCategories";
 import { X } from "lucide-react";
 import Link from "next/link";
 import { useRef, useState } from "react";
@@ -11,14 +9,17 @@ import { useRef, useState } from "react";
 interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
+  onOpenCategories: () => void;
 }
 
-export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
+export default function MobileMenu({
+  isOpen,
+  onClose,
+  onOpenCategories,
+}: MobileMenuProps) {
   const menuRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const linksRef = useRef<HTMLDivElement>(null);
-  const [isCategoryDrawerOpen, setIsCategoryDrawerOpen] = useState(false);
-  const { categories } = useCategories();
 
   useGsap(() => {
     if (!overlayRef.current || !menuRef.current) return;
@@ -68,11 +69,8 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   }, [isOpen]);
 
   const links = [
-    // Categories is separate
     { title: "Brands", href: "/brands" },
     { title: "Products", href: "/products" },
-    { title: "Cart", href: "/cart" },
-    { title: "Login", href: "/login" },
   ];
 
   return (
@@ -100,12 +98,16 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         </div>
 
         <nav className="p-6 flex flex-col items-start" ref={linksRef}>
-          <button className="w-full text-left block py-3 text-lg font-medium text-gray-700 hover:text-black border-b border-gray-100 cursor-pointer">
+          <Link
+            href="/"
+            className="w-full block py-3 text-lg font-medium text-gray-700 hover:text-black border-b border-gray-100"
+            onClick={onClose}
+          >
             Home
-          </button>
+          </Link>
           <button
             className="w-full text-left block py-3 text-lg font-medium text-gray-700 hover:text-black border-b border-gray-100 cursor-pointer"
-            onClick={() => setIsCategoryDrawerOpen(true)}
+            onClick={onOpenCategories}
           >
             Categories
           </button>
@@ -121,12 +123,6 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           ))}
         </nav>
       </div>
-
-      <MobileCategoriesDrawer
-        isOpen={isCategoryDrawerOpen}
-        onClose={() => setIsCategoryDrawerOpen(false)}
-        categories={categories}
-      />
     </>
   );
 }

@@ -7,17 +7,8 @@ import {
   useState,
   ReactNode,
 } from "react";
-import { getProducts } from "../api/getProducts";
-
-interface Product {
-  _id: string;
-  title: string;
-  imageCover: string;
-  images?: string[];
-  price?: number;
-  ratingsAverage?: number;
-  [key: string]: any;
-}
+import { productService } from "@/features/products/api/productService";
+import { Product } from "@/types/product";
 
 interface SwiperContextType {
   products: Product[];
@@ -33,15 +24,8 @@ export function SwiperProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await getProducts();
-        // Adjust based on actual API response structure.
-        // Based on page.tsx: const { data } = await getProducts();
-        // So response likely has a 'data' property which is the array.
-        if (response && response.data) {
-          setProducts(response.data);
-        } else if (Array.isArray(response)) {
-          setProducts(response);
-        }
+        const data = await productService.getAll();
+        setProducts(data);
       } catch (error) {
         console.error("Failed to fetch products for swiper:", error);
       } finally {

@@ -14,6 +14,7 @@ export default function MobileCard({ product }: MobileCardProps) {
           src={product.imageCover}
           alt={product.title}
           fill
+          sizes="(max-width: 768px) 50vw, 33vw"
           className="object-contain mix-blend-multiply"
           loading="lazy"
         />

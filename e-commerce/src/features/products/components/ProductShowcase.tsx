@@ -49,35 +49,36 @@ export default function ProductShowcase({
   }
 
   return (
-    <div className="w-full px-2 py-8">
-      <h2 className="text-3xl md:text-4xl tracking-wider font-semibold text-black my-4 px-2">
-        Explore Our Products
-      </h2>
-      {/* Filter Bar */}
-      <div
-        className={`${
-          isMobile
-            ? "flex flex-nowrap overflow-x-scroll w-full gap-3 px-4 py-3 -mx-2 no-scrollbar scroll-smooth items-center"
-            : "flex flex-wrap justify-center md:justify-start items-center gap-4 my-5"
-        }`}
-      >
-        {categories.map((category, index) => (
-          <button
-            key={index}
-            onClick={() => handleCategoryChange(category)}
-            className={`whitespace-nowrap rounded-full text-sm font-semibold transition-all duration-300 border cursor-pointer shrink-0 ${
-              isMobile ? "px-2 py-1" : "px-6 py-2.5"
-            } ${
-              activeCategory === category
-                ? "bg-black text-white border-black shadow-lg scale-105"
-                : "bg-white text-gray-600 border-gray-200 hover:border-black hover:text-black hover:bg-gray-50"
-            }`}
-          >
-            {category}
-          </button>
-        ))}
+    <div className="mx-auto max-w-7xl py-4">
+      <div className="flex flex-col items-center justify-center">
+        <h2 className="text-3xl md:text-4xl tracking-wider font-semibold text-black my-4 px-2">
+          Explore Our Products
+        </h2>
+        {/* Filter Bar */}
+        <div
+          className={`${
+            isMobile
+              ? "flex flex-nowrap overflow-x-scroll w-full gap-3 px-4 py-3 -mx-2 no-scrollbar scroll-smooth items-center"
+              : "flex flex-wrap justify-center md:justify-start items-center gap-4 my-5"
+          }`}
+        >
+          {categories.map((category, index) => (
+            <button
+              key={index}
+              onClick={() => handleCategoryChange(category)}
+              className={`whitespace-nowrap rounded-full text-sm font-semibold transition-all duration-300 border cursor-pointer shrink-0 ${
+                isMobile ? "px-2 py-1 mx-auto" : "px-6 py-2.5"
+              } ${
+                activeCategory === category
+                  ? "bg-black text-white border-black shadow-lg scale-105"
+                  : "bg-white text-gray-600 border-gray-200 hover:border-black hover:text-black hover:bg-gray-50"
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
       </div>
-
       {/* Products Display */}
       <div
         className={`transition-opacity duration-300 ease-in-out ${

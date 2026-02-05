@@ -1,5 +1,3 @@
-import { API_URL } from "@/utils/constants";
-
 class ApiClient {
   private baseUrl: string;
 
@@ -17,7 +15,12 @@ class ApiClient {
     });
 
     if (!response.ok) {
-      throw new Error(`API Error: ${response.statusText}`);
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(
+        errorData.message ||
+          errorData.error ||
+          `API Error: ${response.statusText}`,
+      );
     }
 
     return response.json();
@@ -26,4 +29,9 @@ class ApiClient {
   // Add post, put, delete methods as needed
 }
 
-export const apiClient = new ApiClient(API_URL);
+const getBaseUrl = () => {
+  if (typeof window !== "undefined") return ""; // Browser: use relative path
+  return process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"; // Server: use absolute path
+};
+
+export const apiClient = new ApiClient(`${getBaseUrl()}/api/v1`);
