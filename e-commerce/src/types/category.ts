@@ -1,3 +1,5 @@
+//! Category Types
+
 export interface SubCategory {
   _id: string;
   name: string;
@@ -12,7 +14,7 @@ export interface Category {
   image: string;
   createdAt: string;
   updatedAt: string;
-  subcategories?: SubCategory[]; 
+  subcategories?: SubCategory[];
 }
 
 export interface CategoriesResponse {

@@ -3,43 +3,22 @@
 import { Menu, ShoppingCart, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useMemo } from "react";
+import { useState } from "react";
 
-import { cn } from "@/lib/utils";
-import MegaMenu from "./mega-menu";
+import CategoriesMegaMenu from "@/components/navigation/CategoriesMegaMenu";
 import MobileMenu from "./mobile-menu";
 import NavLink from "./nav-link";
 import SearchBar from "./search-bar";
 
-interface NavbarProps {
-  categories?: any[];
-  subCategories?: any[];
-}
+interface NavbarProps {}
 
-export default function Navbar({
-  categories = [],
-  subCategories = [],
-}: NavbarProps) {
-  const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
+export default function Navbar({}: NavbarProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const groupedCategories = useMemo(() => {
-    if (!categories.length) return [];
-
-    return categories.map((category) => {
-      // Find subcategories where sub.category corresponds to category._id
-      const subs = subCategories.filter((sub) => sub.category === category._id);
-      return {
-        ...category,
-        subcategories: subs,
-      };
-    });
-  }, [categories, subCategories]);
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-white">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Left Section: Mobile Menu & Logo */}
+        {/*  Mobile Menu & Logo */}
         <div className="flex items-center gap-4">
           {/* Mobile Menu Button */}
           <button
@@ -63,36 +42,17 @@ export default function Navbar({
             <span className="text-xl font-bold tracking-tight">Omnibuy</span>
           </Link>
         </div>
-        {/* Center Section: Desktop Navigation */}
+        {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-8 h-full">
           <NavLink href="/">Home</NavLink>
           <NavLink href="/products">Products</NavLink>
           {/* Mega Menu Trigger */}
-          <div
-            className="flex h-full items-center"
-            onMouseEnter={() => setIsMegaMenuOpen(true)}
-            onMouseLeave={() => setIsMegaMenuOpen(false)}
-          >
-            <NavLink
-              href="/categories"
-              className={cn(
-                "flex items-center gap-1",
-                isMegaMenuOpen && "text-black",
-              )}
-            >
-              Categories
-            </NavLink>
-            <MegaMenu
-              isOpen={isMegaMenuOpen}
-              onClose={() => setIsMegaMenuOpen(false)}
-              categories={groupedCategories}
-            />
-          </div>
+          <CategoriesMegaMenu />
 
           <NavLink href="/brands">Brands</NavLink>
         </nav>
 
-        {/* Right Section: Actions */}
+        {/* Actions */}
         <div className="flex items-center gap-4">
           <SearchBar />
 

@@ -1,5 +1,5 @@
-import { Category } from "@/features/categories/types";
-
+import { Category } from "./category";
+//! Product Types
 export interface Product {
   _id: string;
   id?: string;
@@ -11,7 +11,7 @@ export interface Product {
   imageCover: string;
   images: string[];
   category: Category;
-  brand: any; // Define Brand if needed
+  brand: any;
   ratingsAverage: number;
   ratingsQuantity: number;
   createdAt: string;

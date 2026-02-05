@@ -10,7 +10,9 @@ import {
   Twitter,
   CreditCard,
   Smartphone,
+  Wallet,
 } from "lucide-react";
+import SocialLinks from "@/components/social-links/SocialLinks";
 
 export default function Footer() {
   return (
@@ -36,7 +38,9 @@ export default function Footer() {
                   Help Center
                 </span>
                 <span className="text-sm font-bold text-gray-900 hover:underline cursor-pointer">
-                  help.omnibuy.com
+                  <Link href="mailto:mohamedfawzeix@gmail.com" target="_blank">
+                    mohamedfawzeix@gmail.com
+                  </Link>
                 </span>
               </div>
             </div>
@@ -49,7 +53,9 @@ export default function Footer() {
                   Email Support
                 </span>
                 <span className="text-sm font-bold text-gray-900 hover:underline cursor-pointer">
-                  support@omnibuy.com
+                  <Link href="mailto:muhammadfawzei@gmail.com" target="_blank">
+                    muhammadfawzei@gmail.com
+                  </Link>
                 </span>
               </div>
             </div>
@@ -62,7 +68,9 @@ export default function Footer() {
                   Phone Support
                 </span>
                 <span className="text-sm font-bold text-gray-900 hover:underline cursor-pointer">
-                  16358
+                  <Link href="tel:+201066587947" target="_blank">
+                    01066587947
+                  </Link>
                 </span>
               </div>
             </div>
@@ -215,14 +223,14 @@ export default function Footer() {
             </span>
             <div className="flex items-center gap-3">
               {/* Mock App Store Buttons */}
-              <button className="bg-black text-white px-4 py-1.5 rounded-lg flex items-center gap-2 hover:bg-gray-800 transition-colors">
+              <button className="bg-black text-white px-4 py-1.5 rounded-lg flex items-center gap-2 hover:bg-gray-800 transition-colors cursor-pointer">
                 <Smartphone size={20} />
                 <div className="text-left flex flex-col leading-none">
                   <span className="text-[10px] uppercase">Download on the</span>
                   <span className="text-sm font-bold">App Store</span>
                 </div>
               </button>
-              <button className="bg-black text-white px-4 py-1.5 rounded-lg flex items-center gap-2 hover:bg-gray-800 transition-colors">
+              <button className="bg-black text-white px-4 py-1.5 rounded-lg flex items-center gap-2 hover:bg-gray-800 transition-colors cursor-pointer">
                 <Smartphone size={20} />
                 <div className="text-left flex flex-col leading-none">
                   <span className="text-[10px] uppercase">Get it on</span>
@@ -236,20 +244,7 @@ export default function Footer() {
             <span className="font-bold text-gray-900 uppercase text-sm">
               Connect With Us
             </span>
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-yellow-400 text-black flex items-center justify-center cursor-pointer hover:bg-yellow-500 transition-colors">
-                <Facebook size={20} fill="currentColor" strokeWidth={0} />
-              </div>
-              <div className="w-10 h-10 rounded-full bg-yellow-400 text-black flex items-center justify-center cursor-pointer hover:bg-yellow-500 transition-colors">
-                <Twitter size={20} fill="currentColor" strokeWidth={0} />
-              </div>
-              <div className="w-10 h-10 rounded-full bg-yellow-400 text-black flex items-center justify-center cursor-pointer hover:bg-yellow-500 transition-colors">
-                <Instagram size={20} />
-              </div>
-              <div className="w-10 h-10 rounded-full bg-yellow-400 text-black flex items-center justify-center cursor-pointer hover:bg-yellow-500 transition-colors">
-                <Linkedin size={20} fill="currentColor" strokeWidth={0} />
-              </div>
-            </div>
+            <SocialLinks />
           </div>
         </div>
       </div>
@@ -262,17 +257,16 @@ export default function Footer() {
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2 bg-white px-2 py-1 rounded border border-gray-200">
               <CreditCard size={16} className="text-blue-600" />{" "}
-              <span className="font-bold text-gray-700">VISA</span>
+              <span className="font-bold text-blue-600">VISA</span>
             </div>
             <div className="flex items-center gap-2 bg-white px-2 py-1 rounded border border-gray-200">
               <CreditCard size={16} className="text-red-500" />{" "}
-              <span className="font-bold text-gray-700">MasterCard</span>
+              <span className="font-bold text-red-600">MasterCard</span>
             </div>
             <div className="flex items-center gap-2 bg-white px-2 py-1 rounded border border-gray-200">
-              <span className="font-bold text-gray-700">AMEX</span>
-            </div>
-            <div className="flex items-center gap-2 bg-white px-2 py-1 rounded border border-gray-200">
-              <span className="font-bold text-green-600">CASH</span>
+              <span className="font-bold text-green-600 flex items-center gap-2">
+                <Wallet size={16} className="text-green-600" /> Cash
+              </span>
             </div>
           </div>
 

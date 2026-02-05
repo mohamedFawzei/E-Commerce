@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useWindowSize } from "@/app/_hooks/useWindowSize";
 import MobileCard from "./MobileCard";
 import ProductCard from "./ProductCard";
-import { Product } from "../types";
+import { Product } from "@/types/product";
 import { useProductFilter } from "../hooks/useProductFilter";
 
 interface ProductShowcaseProps {

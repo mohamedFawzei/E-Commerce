@@ -16,23 +16,15 @@ export default async function Home() {
   ]);
 
   return (
-    <section>
+    <section className="container mx-auto">
       <MySwiper />
-
       {/* Featured Categories (Circular) */}
       <FeaturedCategories categories={categoriesWithSubs} />
-
-      {/* Featured Departments */}
-      {categoriesWithSubs.length > 0 && (
-        <DepartmentSection category={categoriesWithSubs[0]} />
-      )}
-
       {/* Products Showcase */}
       <ProductShowcase products={products} />
-
-      {/* Another Department */}
-      {categoriesWithSubs.length > 1 && (
-        <DepartmentSection category={categoriesWithSubs[1]} reverse />
+      {/* Featured Departments */}
+      {categoriesWithSubs.length > 2 && (
+        <DepartmentSection category={categoriesWithSubs[2]} />
       )}
     </section>
   );

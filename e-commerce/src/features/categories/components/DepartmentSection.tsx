@@ -2,11 +2,11 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
-import { Category } from "../types";
+import { Category } from "@/types/category";
 
 interface DepartmentSectionProps {
   category: Category;
-  reverse?: boolean; // Option to flip image/content
+  reverse?: boolean;
 }
 
 const DepartmentSection: React.FC<DepartmentSectionProps> = ({

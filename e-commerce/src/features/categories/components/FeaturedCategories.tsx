@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Category } from "../types";
+import { Category } from "@/types/category";
 
 interface FeaturedCategoriesProps {
   categories: Category[];

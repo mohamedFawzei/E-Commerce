@@ -1,10 +1,12 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
-import Link from "next/link";
+import { DURATION, EASING } from "@/animations/core/config";
+import { gsap, useGsap } from "@/animations/hooks/useGsap";
+import MobileCategoriesDrawer from "@/components/navigation/MobileCategoriesDrawer";
+import { useCategories } from "@/features/categories/hooks/useCategories";
 import { X } from "lucide-react";
-import gsap from "gsap";
-import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { useRef, useState } from "react";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -15,28 +17,37 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   const menuRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const linksRef = useRef<HTMLDivElement>(null);
+  const [isCategoryDrawerOpen, setIsCategoryDrawerOpen] = useState(false);
+  const { categories } = useCategories();
 
-  useEffect(() => {
+  useGsap(() => {
+    if (!overlayRef.current || !menuRef.current) return;
+
     if (isOpen) {
       // Overlay fade in
       gsap.to(overlayRef.current, {
         opacity: 1,
         pointerEvents: "auto",
-        duration: 0.3,
+        duration: DURATION.NORMAL,
       });
       // Menu slide in
       gsap.to(menuRef.current, {
         x: 0,
         duration: 0.4,
-        ease: "power2.out",
+        ease: EASING.DEFAULT,
       });
       // Links stagger animation
       if (linksRef.current) {
         gsap.fromTo(
-          // Use standard HTMLCollection or array for children
           Array.from(linksRef.current.children),
           { x: -20, opacity: 0 },
-          { x: 0, opacity: 1, duration: 0.3, stagger: 0.1, delay: 0.2 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: DURATION.NORMAL,
+            stagger: 0.1,
+            delay: 0.2,
+          },
         );
       }
     } else {
@@ -44,21 +55,20 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       gsap.to(overlayRef.current, {
         opacity: 0,
         pointerEvents: "none",
-        duration: 0.3,
+        duration: DURATION.NORMAL,
         delay: 0.1,
       });
       // Menu slide out
       gsap.to(menuRef.current, {
         x: "-100%",
-        duration: 0.3,
-        ease: "power2.in",
+        duration: DURATION.NORMAL,
+        ease: EASING.SHARP,
       });
     }
   }, [isOpen]);
 
   const links = [
-    { title: "Home", href: "/" },
-    { title: "Categories", href: "/categories" },
+    // Categories is separate
     { title: "Brands", href: "/brands" },
     { title: "Products", href: "/products" },
     { title: "Cart", href: "/cart" },
@@ -70,7 +80,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       {/* Overlay */}
       <div
         ref={overlayRef}
-        className="fixed inset-0 z-40 bg-black/50 opacity-0 pointer-events-none backdrop-blur-sm"
+        className="fixed inset-0 z-40 bg-black/50 opacity-0 pointer-events-none backdrop-blur-sm "
         onClick={onClose}
       />
 
@@ -83,18 +93,27 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           <span className="text-xl font-bold">Menu</span>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-full"
+            className="p-2 hover:bg-gray-100 rounded-full cursor-pointer"
           >
             <X className="h-6 w-6" />
           </button>
         </div>
 
-        <nav className="p-6" ref={linksRef}>
+        <nav className="p-6 flex flex-col items-start" ref={linksRef}>
+          <button className="w-full text-left block py-3 text-lg font-medium text-gray-700 hover:text-black border-b border-gray-100 cursor-pointer">
+            Home
+          </button>
+          <button
+            className="w-full text-left block py-3 text-lg font-medium text-gray-700 hover:text-black border-b border-gray-100 cursor-pointer"
+            onClick={() => setIsCategoryDrawerOpen(true)}
+          >
+            Categories
+          </button>
           {links.map((link) => (
             <Link
               key={link.title}
               href={link.href}
-              className="block py-3 text-lg font-medium text-gray-700 hover:text-black border-b border-gray-100"
+              className="w-full block py-3 text-lg font-medium text-gray-700 hover:text-black border-b border-gray-100"
               onClick={onClose}
             >
               {link.title}
@@ -102,6 +121,12 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           ))}
         </nav>
       </div>
+
+      <MobileCategoriesDrawer
+        isOpen={isCategoryDrawerOpen}
+        onClose={() => setIsCategoryDrawerOpen(false)}
+        categories={categories}
+      />
     </>
   );
 }
