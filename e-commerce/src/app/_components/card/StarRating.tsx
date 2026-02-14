@@ -10,11 +10,10 @@ export default function StarRating({ rating = 0, count }: StarRatingProps) {
     <div className="flex items-center gap-2 font-medium">
       <div className="flex items-center gap-0.5">
         {[...Array(5)].map((_, index) => {
-          // Calculate fill percentage for this specific star
-          // Example: rating 3.5
-          // index 0: 3.5 - 0 = 3.5 -> 100%
-          // index 3: 3.5 - 3 = 0.5 -> 50%
-          // index 4: 3.5 - 4 = -0.5 -> 0%
+          
+          // index 0 3.5 - 0 = 3.5 -> 100%
+          // index 3 3.5 - 3 = 0.5 -> 50%
+          // index 4 3.5 - 4 = -0.5 -> 0%
           const fillPercentage = Math.min(
             100,
             Math.max(0, (rating - index) * 100),
@@ -22,14 +21,14 @@ export default function StarRating({ rating = 0, count }: StarRatingProps) {
 
           return (
             <div key={index} className="relative w-4 h-4">
-              {/* Background Star (Empty/Gray) */}
+              {/* Background Star  */}
               <Star
                 className="w-full h-full text-gray-300"
                 fill="currentColor"
                 strokeWidth={0}
               />
 
-              {/* Foreground Star (Gold - Clipped) */}
+              {/* Foreground Star  */}
               <div
                 className="absolute inset-0 overflow-hidden"
                 style={{ width: `${fillPercentage}%` }}

@@ -1,4 +1,6 @@
+"use server";
 import { api } from "./api";
+
 export async function getCategories() {
   const res = await fetch(`${api}/categories`);
   const data = await res.json();

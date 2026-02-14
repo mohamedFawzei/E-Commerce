@@ -10,18 +10,21 @@ import MobileCategoriesDrawer from "./MobileCategoriesDrawer";
 import { useGsap, gsap } from "@/animations/hooks/useGsap";
 import { DURATION, EASING } from "@/animations/core/config";
 
+import { useLocale, useTranslations } from "next-intl";
+
 export default function CategoriesMegaMenu() {
   const { categories, loading, error } = useCategories();
   const [isOpen, setIsOpen] = useState(false);
   const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null);
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
   const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const locale = useLocale();
+  const t = useTranslations("Navbar");
+  const isRtl = locale === "ar";
 
-  // GSAP Refs
   const containerRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  // Set initial active category
   useEffect(() => {
     if (isOpen && categories.length > 0 && !activeCategoryId) {
       setActiveCategoryId(categories[0]._id);
@@ -30,7 +33,6 @@ export default function CategoriesMegaMenu() {
 
   const activeCategory = categories.find((c) => c._id === activeCategoryId);
 
-  // Animation Logic
   useGsap(() => {
     if (!menuRef.current) return;
 
@@ -43,10 +45,9 @@ export default function CategoriesMegaMenu() {
         overwrite: "auto",
       });
 
-      // entrance of content
       gsap.from(menuRef.current.querySelectorAll("li"), {
         opacity: 0,
-        x: -10,
+        x: isRtl ? 10 : -10,
         stagger: 0.02,
         delay: 0.1,
       });
@@ -59,7 +60,7 @@ export default function CategoriesMegaMenu() {
         overwrite: "auto",
       });
     }
-  }, [isOpen]);
+  }, [isOpen, isRtl]);
 
   const handleMouseEnter = () => {
     if (hideTimeoutRef.current) {
@@ -90,13 +91,13 @@ export default function CategoriesMegaMenu() {
             isOpen ? "text-black bg-gray-50/50" : "text-gray-600",
           )}
         >
-          Categories
+          {t("categories")}
         </button>
 
         {/* Mega Menu Dropdown */}
         <div
           ref={menuRef}
-          className="absolute left-0 top-full w-full bg-white shadow-xl z-50 border-t border-gray-100 overflow-hidden invisible opacity-0"
+          className="absolute start-0 top-full w-full bg-white shadow-xl z-50 border-t border-gray-100 overflow-hidden invisible opacity-0"
           style={{ height: 0 }}
         >
           {loading ? (
@@ -110,13 +111,13 @@ export default function CategoriesMegaMenu() {
           ) : (
             <div className="container mx-auto flex h-full">
               {/* Main Categories */}
-              <div className="w-1/4 h-full overflow-y-auto border-r border-gray-100 bg-gray-50/50 py-4">
+              <div className="w-1/4 h-full overflow-y-auto border-e border-gray-100 bg-gray-50/50 py-4">
                 <ul className="space-y-1 px-4">
                   {categories.map((category) => (
                     <li key={category._id}>
                       <button
                         className={cn(
-                          "w-full text-left flex items-center justify-between px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200",
+                          "w-full text-start flex items-center justify-between px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200",
                           activeCategoryId === category._id
                             ? "bg-white shadow-sm text-amber-600 ring-1 ring-amber-100"
                             : "text-gray-700 hover:bg-gray-100 hover:text-black",

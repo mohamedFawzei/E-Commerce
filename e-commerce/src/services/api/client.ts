@@ -23,10 +23,92 @@ class ApiClient {
       );
     }
 
+    if (response.status === 204) {
+      return {} as T;
+    }
     return response.json();
   }
 
-  // Add post, put, delete methods as needed
+  async post<T>(
+    endpoint: string,
+    body: any,
+    options?: RequestInit,
+  ): Promise<T> {
+    const response = await fetch(`${this.baseUrl}${endpoint}`, {
+      ...options,
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ...options?.headers,
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(
+        errorData.message ||
+          errorData.error ||
+          `API Error: ${response.statusText}`,
+      );
+    }
+
+    if (response.status === 204) {
+      return {} as T;
+    }
+    return response.json();
+  }
+
+  async put<T>(endpoint: string, body: any, options?: RequestInit): Promise<T> {
+    const response = await fetch(`${this.baseUrl}${endpoint}`, {
+      ...options,
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        ...options?.headers,
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(
+        errorData.message ||
+          errorData.error ||
+          `API Error: ${response.statusText}`,
+      );
+    }
+
+    if (response.status === 204) {
+      return {} as T;
+    }
+    return response.json();
+  }
+
+  async delete<T>(endpoint: string, options?: RequestInit): Promise<T> {
+    const response = await fetch(`${this.baseUrl}${endpoint}`, {
+      ...options,
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        ...options?.headers,
+      },
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(
+        errorData.message ||
+          errorData.error ||
+          `API Error: ${response.statusText}`,
+      );
+    }
+
+    if (response.status === 204) {
+      return {} as T;
+    }
+    return response.json();
+  }
 }
 
 const getBaseUrl = () => {

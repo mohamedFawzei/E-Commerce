@@ -1,6 +1,7 @@
 import { Category } from "./category";
 //! Product Types
 export interface Product {
+  priceAfterDiscount?: number;
   _id: string;
   id?: string;
   title: string;

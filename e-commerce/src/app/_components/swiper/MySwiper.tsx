@@ -1,38 +1,37 @@
 "use client";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
 import "swiper/css/pagination";
 
-// import required modules
 import { Autoplay, Pagination } from "swiper/modules";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 const slider = [
   {
     id: 1,
-    title: "macbook laptop",
+    key: "laptop",
     image: "/images/slider/laptop.jpg",
   },
   {
     id: 2,
-    title: "lipton alahly club",
+    key: "tea",
     image: "/images/slider/lipton.jpg",
   },
   {
     id: 3,
-    title: "pampers",
+    key: "diapers",
     image: "/images/slider/pampers.jpg",
   },
   {
     id: 4,
-    title: "iphone",
+    key: "iphone",
     image: "/images/slider/iphone17.jpg",
   },
 ];
 
 export default function MySwiper() {
+  const t = useTranslations("Home.Slider");
   return (
     <section className="h-[150px] md:h-[200px] lg:h-[300px] xl:h-[450px]  object-cover object-center overflow-hidden">
       <Swiper
@@ -52,11 +51,11 @@ export default function MySwiper() {
           <SwiperSlide key={index}>
             <Image
               src={item.image}
-              alt={item.title}
+              alt={t(item.key)}
               width={2000}
               height={2000}
               className="object-cover object-top h-full w-full"
-              loading="eager"
+              loading="lazy"
             />
           </SwiperSlide>
         ))}

@@ -33,17 +33,17 @@ E-commerce Plan
    Api Tasks 
 
    * Authentication Tasks *
-   Login
-   Register
-   forgot-password
-   change-password
+   Login [ X ]
+   Register [ X ]
+   forgot-password [ X ]
+   change-password [ X ]
    * Listing & Details *
    Products [ X ]
-   Product Details 
-   Brands
-   Brand Details
-   Categories
-   Category Details
+   Product Details [ X ]
+   Brands [ X ]
+   Brand Details [ X ]
+   Categories [ X ]
+   Category Details [ X ]
    * Cart Operations *
    Display 
    Add 

@@ -17,14 +17,14 @@ export default function StarRating({ rating = 0, count }: StarRatingProps) {
 
           return (
             <div key={index} className="relative w-4 h-4">
-              {/* Background Star (Empty/Gray) */}
+              {/* Background Star */}
               <Star
                 className="w-full h-full text-gray-300"
                 fill="currentColor"
                 strokeWidth={0}
               />
 
-              {/* Foreground Star (Gold - Clipped) */}
+              {/* Foreground Star */}
               <div
                 className="absolute inset-0 overflow-hidden"
                 style={{ width: `${fillPercentage}%` }}

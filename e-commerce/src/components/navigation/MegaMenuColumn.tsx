@@ -9,7 +9,6 @@ interface MegaMenuColumnProps {
   onItemClick?: () => void;
 }
 
-
 export default function MegaMenuColumn({
   title,
   items,
@@ -28,7 +27,7 @@ export default function MegaMenuColumn({
         {items.map((item) => (
           <li key={item._id}>
             <Link
-              href={`/products?category=${item._id}`}
+              href={`/products?subcategory=${item._id}`}
               className="text-sm text-gray-600 hover:text-amber-600 hover:translate-x-1 transition-all duration-200 block py-1"
               onClick={onItemClick}
             >

@@ -9,7 +9,6 @@ import {
 } from "react";
 import { productService } from "@/features/products/api/productService";
 import { Product } from "@/types/product";
-
 interface SwiperContextType {
   products: Product[];
   loading: boolean;

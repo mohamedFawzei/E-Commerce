@@ -1,8 +1,10 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { ChevronRight } from "lucide-react";
 import { Category } from "@/types/category";
+import { useTranslations, useLocale } from "next-intl";
+import { getTranslatedCategory } from "@/utils/categoryTranslations";
 
 interface DepartmentSectionProps {
   category: Category;
@@ -13,6 +15,10 @@ const DepartmentSection: React.FC<DepartmentSectionProps> = ({
   category,
   reverse = false,
 }) => {
+  const t = useTranslations("DepartmentSection");
+  const tCommon = useTranslations("Common");
+  const locale = useLocale();
+
   if (!category) return null;
 
   return (
@@ -27,7 +33,7 @@ const DepartmentSection: React.FC<DepartmentSectionProps> = ({
           <div className="relative lg:w-1/2 min-h-[300px] lg:min-h-[400px]">
             <Image
               src={category.image}
-              alt={category.name}
+              alt={getTranslatedCategory(category.name, locale)}
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
               className="object-cover"
@@ -35,7 +41,7 @@ const DepartmentSection: React.FC<DepartmentSectionProps> = ({
             />
             <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent flex items-end p-8">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
-                {category.name}
+                {getTranslatedCategory(category.name, locale)}
               </h2>
             </div>
           </div>
@@ -43,7 +49,7 @@ const DepartmentSection: React.FC<DepartmentSectionProps> = ({
           {/* Content Section */}
           <div className="lg:w-1/2 p-8 md:p-12 flex flex-col justify-center">
             <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              Shop by Category
+              {t("title")}
             </h3>
 
             {category.subcategories && category.subcategories.length > 0 ? (
@@ -55,7 +61,7 @@ const DepartmentSection: React.FC<DepartmentSectionProps> = ({
                     className="group flex items-center justify-between p-4 rounded-lg border border-gray-100 hover:border-amber-200 hover:bg-amber-50 transition-all duration-200"
                   >
                     <span className="font-medium text-gray-700 group-hover:text-amber-800">
-                      {sub.name}
+                      {getTranslatedCategory(sub.name, locale)}
                     </span>
                     <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-amber-600 transition-transform group-hover:translate-x-1" />
                   </Link>
@@ -63,7 +69,7 @@ const DepartmentSection: React.FC<DepartmentSectionProps> = ({
               </div>
             ) : (
               <p className="text-gray-500 mb-6">
-                Explore our latest collection in {category.name}.
+                {t("explore")} {getTranslatedCategory(category.name, locale)}.
               </p>
             )}
 
@@ -71,7 +77,8 @@ const DepartmentSection: React.FC<DepartmentSectionProps> = ({
               href={`/products?category=${category._id}`}
               className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-black hover:bg-gray-800 transition-colors w-fit"
             >
-              Shop All {category.name}
+              {tCommon("shopAll")}{" "}
+              {getTranslatedCategory(category.name, locale)}
             </Link>
           </div>
         </div>

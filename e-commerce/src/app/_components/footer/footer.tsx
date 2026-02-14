@@ -1,5 +1,6 @@
 import React from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 import {
   HelpCircle,
   Mail,
@@ -15,27 +16,25 @@ import {
 import SocialLinks from "@/components/social-links/SocialLinks";
 
 export default function Footer() {
+  const t = useTranslations("Footer");
+
   return (
     <footer className="bg-white border-t border-gray-100 font-sans cursor-default">
       {/* 1. Top Support Bar */}
       <div className="bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-center md:text-left">
-            <h3 className="text-lg font-bold text-gray-900">
-              We're Always Here To Help
-            </h3>
-            <p className="text-sm text-gray-500 mt-1">
-              Reach out to us through any of these support channels
-            </p>
+          <div className="text-center md:text-start">
+            <h3 className="text-lg font-bold text-gray-900">{t("help")}</h3>
+            <p className="text-sm text-gray-500 mt-1">{t("reachOut")}</p>
           </div>
           <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-6 md:gap-12 w-full sm:w-auto">
             <div className="flex items-center gap-3 w-full sm:w-auto justify-start sm:justify-center px-4 sm:px-0">
               <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm text-gray-400 shrink-0">
                 <HelpCircle size={20} />
               </div>
-              <div className="flex flex-col text-left">
+              <div className="flex flex-col text-start">
                 <span className="text-xs text-gray-400 uppercase tracking-wider font-semibold">
-                  Help Center
+                  {t("helpCenter")}
                 </span>
                 <span className="text-sm font-bold text-gray-900 hover:underline cursor-pointer break-all">
                   <Link href="mailto:mohamedfawzeix@gmail.com" target="_blank">
@@ -48,9 +47,9 @@ export default function Footer() {
               <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm text-gray-400 shrink-0">
                 <Mail size={20} />
               </div>
-              <div className="flex flex-col text-left">
+              <div className="flex flex-col text-start">
                 <span className="text-xs text-gray-400 uppercase tracking-wider font-semibold">
-                  Email Support
+                  {t("emailSupport")}
                 </span>
                 <span className="text-sm font-bold text-gray-900 hover:underline cursor-pointer break-all">
                   <Link href="mailto:muhammadfawzei@gmail.com" target="_blank">
@@ -63,9 +62,9 @@ export default function Footer() {
               <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm text-gray-400 shrink-0">
                 <Phone size={20} />
               </div>
-              <div className="flex flex-col text-left">
+              <div className="flex flex-col text-start">
                 <span className="text-xs text-gray-400 uppercase tracking-wider font-semibold">
-                  Phone Support
+                  {t("phoneSupport")}
                 </span>
                 <span className="text-sm font-bold text-gray-900 hover:underline cursor-pointer">
                   <Link href="tel:+201066587947" target="_blank">
@@ -84,87 +83,291 @@ export default function Footer() {
           {/* Column 1 */}
           <div>
             <h4 className="font-bold text-gray-900 mb-4 uppercase text-sm">
-              Electronics
+              {t("electronics")}
             </h4>
             <ul className="space-y-2 text-sm text-gray-600">
-              <li className="hover:underline cursor-pointer">Mobiles</li>
-              <li className="hover:underline cursor-pointer">Tablets</li>
-              <li className="hover:underline cursor-pointer">Laptops</li>
-              <li className="hover:underline cursor-pointer">
-                Home Appliances
+              <li>
+                <Link
+                  href="/products?subcategory=6407f2f7b575d3b90bf957c4"
+                  className="hover:underline cursor-pointer"
+                >
+                  Mobiles
+                </Link>
               </li>
-              <li className="hover:underline cursor-pointer">
-                Camera, Photo & Video
+              <li>
+                <Link
+                  href="/products?subcategory=6407f305b575d3b90bf957c7"
+                  className="hover:underline cursor-pointer"
+                >
+                  Tablets
+                </Link>
               </li>
-              <li className="hover:underline cursor-pointer">Televisions</li>
-              <li className="hover:underline cursor-pointer">Headphones</li>
-              <li className="hover:underline cursor-pointer">Video Games</li>
+              <li>
+                <Link
+                  href="/products?subcategory=6407f3a8b575d3b90bf957e2"
+                  className="hover:underline cursor-pointer"
+                >
+                  Laptops
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?subcategory=6407f11eb575d3b90bf9577c"
+                  className="hover:underline cursor-pointer"
+                >
+                  Home Appliances
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?subcategory=6407f3ccb575d3b90bf957eb"
+                  className="hover:underline cursor-pointer"
+                >
+                  Camera, Photo & Video
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?subcategory=6407f39bb575d3b90bf957df"
+                  className="hover:underline cursor-pointer"
+                >
+                  Televisions
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?subcategory=6407f32eb575d3b90bf957d0"
+                  className="hover:underline cursor-pointer"
+                >
+                  Headphones
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?subcategory=6407f3c0b575d3b90bf957e8"
+                  className="hover:underline cursor-pointer"
+                >
+                  Video Games
+                </Link>
+              </li>
             </ul>
           </div>
 
           {/* Column 2 */}
           <div>
             <h4 className="font-bold text-gray-900 mb-4 uppercase text-sm">
-              Fashion
+              {t("fashion")}
             </h4>
             <ul className="space-y-2 text-sm text-gray-600">
-              <li className="hover:underline cursor-pointer">
-                Women's Fashion
+              <li>
+                <Link
+                  href="/products?category=6439d58a0049ad0b52b9003f"
+                  className="hover:underline cursor-pointer"
+                >
+                  Women's Fashion
+                </Link>
               </li>
-              <li className="hover:underline cursor-pointer">Men's Fashion</li>
-              <li className="hover:underline cursor-pointer">Girls' Fashion</li>
-              <li className="hover:underline cursor-pointer">Boys' Fashion</li>
-              <li className="hover:underline cursor-pointer">Watches</li>
-              <li className="hover:underline cursor-pointer">Jewellery</li>
-              <li className="hover:underline cursor-pointer">
-                Women's Handbags
+              <li>
+                <Link
+                  href="/products?category=6439d5b90049ad0b52b90048"
+                  className="hover:underline cursor-pointer"
+                >
+                  Men's Fashion
+                </Link>
               </li>
-              <li className="hover:underline cursor-pointer">Men's Eyewear</li>
+              <li>
+                <Link
+                  href="/products?subcategory=6407f219b575d3b90bf957a9"
+                  className="hover:underline cursor-pointer"
+                >
+                  Girls' Fashion
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?subcategory=6407f219b575d3b90bf957a9"
+                  className="hover:underline cursor-pointer"
+                >
+                  Boys' Fashion
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?subcategory=6407f1e1b575d3b90bf9579d"
+                  className="hover:underline cursor-pointer"
+                >
+                  Watches
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?subcategory=6407f1ecb575d3b90bf957a0"
+                  className="hover:underline cursor-pointer"
+                >
+                  Jewellery
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?subcategory=6407f208b575d3b90bf957a6"
+                  className="hover:underline cursor-pointer"
+                >
+                  Women's Handbags
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?subcategory=6407f1fdb575d3b90bf957a3"
+                  className="hover:underline cursor-pointer"
+                >
+                  Men's Eyewear
+                </Link>
+              </li>
             </ul>
           </div>
 
           {/* Column 3 */}
           <div>
             <h4 className="font-bold text-gray-900 mb-4 uppercase text-sm">
-              Home And Kitchen
+              {t("homeKitchen")}
             </h4>
             <ul className="space-y-2 text-sm text-gray-600">
-              <li className="hover:underline cursor-pointer">
-                Kitchen & Dining
+              <li>
+                <Link
+                  href="/products?subcategory=6407f198b575d3b90bf95794"
+                  className="hover:underline cursor-pointer"
+                >
+                  Kitchen & Dining
+                </Link>
               </li>
-              <li className="hover:underline cursor-pointer">Bedding</li>
-              <li className="hover:underline cursor-pointer">Bath</li>
-              <li className="hover:underline cursor-pointer">Home Decor</li>
-              <li className="hover:underline cursor-pointer">
-                Home Appliances
+              <li>
+                <Link
+                  href="/products?subcategory=6407f154b575d3b90bf95788"
+                  className="hover:underline cursor-pointer"
+                >
+                  Bedding
+                </Link>
               </li>
-              <li className="hover:underline cursor-pointer">
-                Tools & Home Improvement
+              <li>
+                <Link
+                  href="/products?subcategory=6407f154b575d3b90bf95788"
+                  className="hover:underline cursor-pointer"
+                >
+                  Bath
+                </Link>
               </li>
-              <li className="hover:underline cursor-pointer">
-                Patio, Lawn & Garden
+              <li>
+                <Link
+                  href="/products?subcategory=6407f188b575d3b90bf95791"
+                  className="hover:underline cursor-pointer"
+                >
+                  Home Decor
+                </Link>
               </li>
-              <li className="hover:underline cursor-pointer">Storage</li>
+              <li>
+                <Link
+                  href="/products?subcategory=6407f11eb575d3b90bf9577c"
+                  className="hover:underline cursor-pointer"
+                >
+                  Home Appliances
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?subcategory=6407f163b575d3b90bf9578b"
+                  className="hover:underline cursor-pointer"
+                >
+                  Tools & Home Improvement
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?category=6439d3e067d9aa4ca97064c3"
+                  className="hover:underline cursor-pointer"
+                >
+                  Patio, Lawn & Garden
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?category=6439d3e067d9aa4ca97064c3"
+                  className="hover:underline cursor-pointer"
+                >
+                  Storage
+                </Link>
+              </li>
             </ul>
           </div>
 
           {/* Column 4 */}
           <div>
             <h4 className="font-bold text-gray-900 mb-4 uppercase text-sm">
-              Beauty
+              {t("beauty")}
             </h4>
             <ul className="space-y-2 text-sm text-gray-600">
-              <li className="hover:underline cursor-pointer">Fragrance</li>
-              <li className="hover:underline cursor-pointer">Make-up</li>
-              <li className="hover:underline cursor-pointer">Haircare</li>
-              <li className="hover:underline cursor-pointer">Skincare</li>
-              <li className="hover:underline cursor-pointer">Personal Care</li>
-              <li className="hover:underline cursor-pointer">
-                Tools & Accessories
+              <li>
+                <Link
+                  href="/products?subcategory=6407f08bb575d3b90bf9576a"
+                  className="hover:underline cursor-pointer"
+                >
+                  Fragrance
+                </Link>
               </li>
-              <li className="hover:underline cursor-pointer">Men's Grooming</li>
-              <li className="hover:underline cursor-pointer">
-                Health Care Essentials
+              <li>
+                <Link
+                  href="/products?subcategory=6407f098b575d3b90bf9576d"
+                  className="hover:underline cursor-pointer"
+                >
+                  Make-up
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?subcategory=6407f0a3b575d3b90bf95770"
+                  className="hover:underline cursor-pointer"
+                >
+                  Haircare
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?subcategory=6407f0b1b575d3b90bf95773"
+                  className="hover:underline cursor-pointer"
+                >
+                  Skincare
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?subcategory=6407f0bfb575d3b90bf95776"
+                  className="hover:underline cursor-pointer"
+                >
+                  Personal Care
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?category=6439d30b67d9aa4ca97064b1"
+                  className="hover:underline cursor-pointer"
+                >
+                  Tools & Accessories
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?category=6439d30b67d9aa4ca97064b1"
+                  className="hover:underline cursor-pointer"
+                >
+                  Men's Grooming
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?subcategory=6407f0cbb575d3b90bf95779"
+                  className="hover:underline cursor-pointer"
+                >
+                  Health Care Essentials
+                </Link>
               </li>
             </ul>
           </div>
@@ -172,23 +375,73 @@ export default function Footer() {
           {/* Column 5 */}
           <div>
             <h4 className="font-bold text-gray-900 mb-4 uppercase text-sm">
-              Kids, Baby & Toys
+              {t("kidsBaby")}
             </h4>
             <ul className="space-y-2 text-sm text-gray-600">
-              <li className="hover:underline cursor-pointer">
-                Strollers, Prams & Accessories
+              <li>
+                <Link
+                  href="/products?subcategory=6407efeab575d3b90bf9575b"
+                  className="hover:underline cursor-pointer"
+                >
+                  Strollers, Prams & Accessories
+                </Link>
               </li>
-              <li className="hover:underline cursor-pointer">Car Seats</li>
-              <li className="hover:underline cursor-pointer">Baby Clothing</li>
-              <li className="hover:underline cursor-pointer">Feeding</li>
-              <li className="hover:underline cursor-pointer">
-                Bathing & Skincare
+              <li>
+                <Link
+                  href="/products?subcategory=6407efeab575d3b90bf9575b"
+                  className="hover:underline cursor-pointer"
+                >
+                  Car Seats
+                </Link>
               </li>
-              <li className="hover:underline cursor-pointer">Diapering</li>
-              <li className="hover:underline cursor-pointer">
-                Baby & Toddler Toys
+              <li>
+                <Link
+                  href="/products?category=6439d40367d9aa4ca97064cc"
+                  className="hover:underline cursor-pointer"
+                >
+                  Baby Clothing
+                </Link>
               </li>
-              <li className="hover:underline cursor-pointer">Toys & Games</li>
+              <li>
+                <Link
+                  href="/products?subcategory=6407efdab575d3b90bf95758"
+                  className="hover:underline cursor-pointer"
+                >
+                  Feeding
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?subcategory=6407efcab575d3b90bf95755"
+                  className="hover:underline cursor-pointer"
+                >
+                  Bathing & Skincare
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?subcategory=6407f00cb575d3b90bf95761"
+                  className="hover:underline cursor-pointer"
+                >
+                  Diapering
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?subcategory=6407f019b575d3b90bf95764"
+                  className="hover:underline cursor-pointer"
+                >
+                  Baby & Toddler Toys
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?subcategory=6407f019b575d3b90bf95764"
+                  className="hover:underline cursor-pointer"
+                >
+                  Toys & Games
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -196,18 +449,65 @@ export default function Footer() {
           <div className="space-y-8">
             <div>
               <h4 className="font-bold text-gray-900 mb-4 uppercase text-sm">
-                Top Brands
+                {t("topBrands")}
               </h4>
               <ul className="space-y-2 text-sm text-gray-600">
-                <li className="hover:underline cursor-pointer">Apple</li>
-                <li className="hover:underline cursor-pointer">Samsung</li>
-                <li className="hover:underline cursor-pointer">Nike</li>
-                <li className="hover:underline cursor-pointer">Ray-Ban</li>
-                <li className="hover:underline cursor-pointer">Tefal</li>
-                <li className="hover:underline cursor-pointer">
-                  L'Oreal Paris
+                <li>
+                  <Link
+                    href="/brands"
+                    className="hover:underline cursor-pointer"
+                  >
+                    Apple
+                  </Link>
                 </li>
-                <li className="hover:underline cursor-pointer">Skechers</li>
+                <li>
+                  <Link
+                    href="/brands"
+                    className="hover:underline cursor-pointer"
+                  >
+                    Samsung
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/brands"
+                    className="hover:underline cursor-pointer"
+                  >
+                    Nike
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/brands"
+                    className="hover:underline cursor-pointer"
+                  >
+                    Ray-Ban
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/brands"
+                    className="hover:underline cursor-pointer"
+                  >
+                    Tefal
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/brands"
+                    className="hover:underline cursor-pointer"
+                  >
+                    L'Oreal Paris
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/brands"
+                    className="hover:underline cursor-pointer"
+                  >
+                    Skechers
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
@@ -219,20 +519,20 @@ export default function Footer() {
         <div className="mx-auto max-w-7xl flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex flex-col sm:flex-row items-center gap-6">
             <span className="font-bold text-gray-900 uppercase text-sm">
-              Shop On The Go
+              {t("shopOnGo")}
             </span>
             <div className="flex items-center gap-3">
               {/* Mock App Store Buttons */}
               <button className="bg-black text-white px-4 py-1.5 rounded-lg flex items-center gap-2 hover:bg-gray-800 transition-colors cursor-pointer">
                 <Smartphone size={20} />
-                <div className="text-left flex flex-col leading-none">
+                <div className="text-start flex flex-col leading-none">
                   <span className="text-[10px] uppercase">Download on the</span>
                   <span className="text-sm font-bold">App Store</span>
                 </div>
               </button>
               <button className="bg-black text-white px-4 py-1.5 rounded-lg flex items-center gap-2 hover:bg-gray-800 transition-colors cursor-pointer">
                 <Smartphone size={20} />
-                <div className="text-left flex flex-col leading-none">
+                <div className="text-start flex flex-col leading-none">
                   <span className="text-[10px] uppercase">Get it on</span>
                   <span className="text-sm font-bold">Google Play</span>
                 </div>
@@ -242,7 +542,7 @@ export default function Footer() {
 
           <div className="flex flex-col sm:flex-row items-center gap-6">
             <span className="font-bold text-gray-900 uppercase text-sm">
-              Connect With Us
+              {t("connectWithUs")}
             </span>
             <SocialLinks />
           </div>
@@ -252,7 +552,7 @@ export default function Footer() {
       {/* 4. Bottom Copyright & Payments */}
       <div className="bg-gray-50 py-6 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
-          <p>&copy; 2026 Omnibuy. All Rights Reserved</p>
+          <p>&copy; 2026 Omnibuy. {t("rightsReserved")}</p>
 
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2 bg-white px-2 py-1 rounded border border-gray-200">
@@ -272,19 +572,19 @@ export default function Footer() {
 
           <div className="flex gap-4">
             <Link href="#" className="hover:underline">
-              Careers
+              {t("careers")}
             </Link>
             <Link href="#" className="hover:underline">
-              Warranty Policy
+              {t("warranty")}
             </Link>
             <Link href="#" className="hover:underline">
-              Sell with us
+              {t("sellWithUs")}
             </Link>
-            <Link href="#" className="hover:underline">
-              Terms of Use
+            <Link href="/conditions-of-use" className="hover:underline">
+              {t("conditions")}
             </Link>
-            <Link href="#" className="hover:underline">
-              Privacy Policy
+            <Link href="/privacy-notice" className="hover:underline">
+              {t("privacy")}
             </Link>
           </div>
         </div>

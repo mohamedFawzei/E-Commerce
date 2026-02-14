@@ -31,7 +31,7 @@ export default function MobileCard({ product }: MobileCardProps) {
         />
 
         {/* Mobile Add to Cart */}
-        <button className="absolute bottom-2 right-2 w-8 h-8 rounded-full bg-black text-white flex items-center justify-center shadow-sm active:scale-95 transition-transform z-10">
+        <button className="absolute bottom-2 end-2 w-8 h-8 rounded-full bg-black text-white flex items-center justify-center shadow-sm active:scale-95 transition-transform z-10">
           <Plus size={18} />
         </button>
       </div>
@@ -49,7 +49,7 @@ export default function MobileCard({ product }: MobileCardProps) {
           <span className="text-red-500 font-bold text-sm">
             {product.price ? `${product.price} EGP` : "$0"}
           </span>
-          <div className="scale-90 origin-right">
+          <div className="scale-90 origin-right rtl:origin-left">
             <StarRating
               rating={product.ratingsAverage ?? 4.5}
               count={product.ratingsQuantity}

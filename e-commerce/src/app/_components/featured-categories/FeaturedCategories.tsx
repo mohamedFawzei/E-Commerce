@@ -35,7 +35,7 @@ const FeaturedCategories: React.FC<FeaturedCategoriesProps> = ({
               href={`/products?category=${category._id}`}
               className="group flex flex-col items-center cursor-pointer"
             >
-              {/* Image Container with Gradient Ring Effect on Hover */}
+             
               <div className="relative p-1 rounded-full bg-transparent group-hover:bg-linear-to-tr group-hover:from-amber-400 group-hover:to-orange-600 transition-all duration-300">
                 <div className="relative w-32 h-32 sm:w-40 sm:h-40 overflow-hidden rounded-full border-4 border-gray-100 bg-white group-hover:border-white transition-colors duration-300 shadow-sm group-hover:shadow-lg">
                   <Image

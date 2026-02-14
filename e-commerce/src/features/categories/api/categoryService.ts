@@ -1,4 +1,4 @@
-import { apiClient } from "@/services/api/client";
+import { getCategories, getSubCategories } from "@/app/api/getCategories";
 import {
   CategoriesResponse,
   SubCategoriesResponse,
@@ -7,13 +7,12 @@ import {
 
 export const categoryService = {
   getAll: async (): Promise<Category[]> => {
-    const response = await apiClient.get<CategoriesResponse>("/categories");
+    const response = await getCategories();
     return response.data;
   },
 
   getAllSubCategories: async (): Promise<SubCategoriesResponse["data"]> => {
-    const response =
-      await apiClient.get<SubCategoriesResponse>("/subcategories");
+    const response = await getSubCategories();
     return response.data;
   },
 
@@ -27,7 +26,13 @@ export const categoryService = {
     // Merge logic
     return categories.map((cat) => ({
       ...cat,
-      subcategories: subCategories.filter((sub) => sub.category === cat._id),
+      subcategories: subCategories.filter((sub) => {
+        const subCatId =
+          typeof sub.category === "object" && sub.category !== null
+            ? (sub.category as { _id: string })._id
+            : sub.category;
+        return subCatId === cat._id;
+      }),
     }));
   },
 };

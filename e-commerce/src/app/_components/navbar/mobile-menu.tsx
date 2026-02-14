@@ -12,6 +12,8 @@ interface MobileMenuProps {
   onOpenCategories: () => void;
 }
 
+import { useLocale } from "next-intl";
+
 export default function MobileMenu({
   isOpen,
   onClose,
@@ -20,28 +22,27 @@ export default function MobileMenu({
   const menuRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const linksRef = useRef<HTMLDivElement>(null);
+  const locale = useLocale();
+  const isRtl = locale === "ar";
 
   useGsap(() => {
     if (!overlayRef.current || !menuRef.current) return;
 
     if (isOpen) {
-      // Overlay fade in
       gsap.to(overlayRef.current, {
         opacity: 1,
         pointerEvents: "auto",
         duration: DURATION.NORMAL,
       });
-      // Menu slide in
       gsap.to(menuRef.current, {
         x: 0,
         duration: 0.4,
         ease: EASING.DEFAULT,
       });
-      // Links stagger animation
       if (linksRef.current) {
         gsap.fromTo(
           Array.from(linksRef.current.children),
-          { x: -20, opacity: 0 },
+          { x: isRtl ? 20 : -20, opacity: 0 },
           {
             x: 0,
             opacity: 1,
@@ -61,12 +62,12 @@ export default function MobileMenu({
       });
       // Menu slide out
       gsap.to(menuRef.current, {
-        x: "-100%",
+        x: isRtl ? "100%" : "-100%",
         duration: DURATION.NORMAL,
         ease: EASING.SHARP,
       });
     }
-  }, [isOpen]);
+  }, [isOpen, isRtl]);
 
   const links = [
     { title: "Brands", href: "/brands" },
@@ -85,7 +86,7 @@ export default function MobileMenu({
       {/* Drawer */}
       <div
         ref={menuRef}
-        className="fixed top-0 left-0 z-50 h-full w-[80%] max-w-[300px] bg-white shadow-xl transform -translate-x-full"
+        className="fixed top-0 start-0 z-50 h-full w-[80%] max-w-[300px] bg-white shadow-xl transform ltr:-translate-x-full rtl:translate-x-full"
       >
         <div className="flex h-16 items-center justify-between px-6 border-b">
           <span className="text-xl font-bold">Menu</span>
@@ -106,7 +107,7 @@ export default function MobileMenu({
             Home
           </Link>
           <button
-            className="w-full text-left block py-3 text-lg font-medium text-gray-700 hover:text-black border-b border-gray-100 cursor-pointer"
+            className="w-full text-start block py-3 text-lg font-medium text-gray-700 hover:text-black border-b border-gray-100 cursor-pointer"
             onClick={onOpenCategories}
           >
             Categories

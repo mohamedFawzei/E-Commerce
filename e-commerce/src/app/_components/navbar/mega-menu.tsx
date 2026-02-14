@@ -27,8 +27,7 @@ export default function MegaMenu({
   // Set initial hovered category
   useEffect(() => {
     if (isOpen && categories.length > 0) {
-      // If a category is selected in URL and matches a main category, show that.
-      // Otherwise default to first with subs or first.
+   
       const match = categories.find((c) => c._id === urlCategory);
       if (match) {
         setHoveredCategoryId(match._id);
@@ -70,9 +69,6 @@ export default function MegaMenu({
     (sub) => sub._id === urlCategory,
   );
 
-  // Determine the image to show: Selected subcategory image (if exists/mocked) -> Active Category image
-  // For this example, assuming subcategories don't have images in the type yet, so safely falling back or using placeholder logic
-  // If you want subcategory images, you'd need to add them to API/Types. For now, we'll keep the category image but maybe animate opacity.
   const displayImage = activeCategory?.image;
 
   const handleSubCategoryClick = (id: string, e: React.MouseEvent) => {
@@ -88,16 +84,15 @@ export default function MegaMenu({
   return (
     <div
       ref={menuRef}
-      className="absolute left-0 top-full w-full bg-white shadow-xl z-50 border-t h-0 invisible overflow-hidden"
+      className="absolute start-0 top-full w-full bg-white shadow-xl z-50 border-t h-0 invisible overflow-hidden"
       onMouseLeave={onClose}
     >
       <div className="container mx-auto flex h-[500px]">
-        {/* Left Sidebar: Categories List */}
-        <div className="w-1/4 h-full overflow-y-auto border-r border-gray-100 py-4 bg-gray-50/50">
+        {/* Left Sidebar */}
+        <div className="w-1/4 h-full overflow-y-auto border-e border-gray-100 py-4 bg-gray-50/50">
           <ul className="space-y-1 px-4">
             {categories.map((category) => {
               const isActive = hoveredCategoryId === category._id;
-              // Check if one of its subcategories is selected in URL
               const hasActiveSub = category.subcategories?.some(
                 (sub) => sub._id === urlCategory,
               );
@@ -105,7 +100,7 @@ export default function MegaMenu({
               return (
                 <li key={category._id}>
                   <button
-                    className={`w-full text-left group flex items-center justify-between px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
+                    className={`w-full text-start group flex items-center justify-between px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
                       isActive
                         ? "bg-white shadow-sm text-amber-600"
                         : "text-gray-700 hover:bg-gray-100 hover:text-black"
@@ -120,7 +115,7 @@ export default function MegaMenu({
                         isActive
                           ? "text-amber-600"
                           : "text-gray-400 group-hover:text-gray-600"
-                      }`}
+                      } rtl:rotate-180`}
                     />
                   </button>
                 </li>
@@ -129,7 +124,7 @@ export default function MegaMenu({
           </ul>
         </div>
 
-        {/* Right Content: Subcategories Grid */}
+        {/* Right Content */}
         <div className="w-3/4 h-full overflow-y-auto p-8 bg-white relative">
           {activeCategory ? (
             activeCategory.subcategories &&
@@ -147,9 +142,9 @@ export default function MegaMenu({
                         <button
                           key={sub._id}
                           onClick={(e) => handleSubCategoryClick(sub._id, e)}
-                          className={`text-sm text-left transition-all duration-200 py-1 block hover:translate-x-1 ${
+                          className={`text-sm text-start transition-all duration-200 py-1 block hover:translate-x-1 rtl:hover:-translate-x-1 ${
                             isSelected
-                              ? "font-bold text-black border-l-2 border-amber-500 pl-2"
+                              ? "font-bold text-black border-s-2 border-amber-500 ps-2"
                               : "text-gray-600 hover:text-amber-600"
                           }`}
                         >
@@ -166,7 +161,6 @@ export default function MegaMenu({
                     <div
                       className={`absolute inset-0 transition-opacity duration-500 ${selectedSubCategory ? "opacity-50" : "opacity-100"}`}
                     >
-                      {/* Fallback to category image as subcategories don't have images in current schema */}
                       {activeCategory.image ? (
                         <Image
                           src={activeCategory.image}
@@ -198,7 +192,6 @@ export default function MegaMenu({
                 </div>
               </div>
             ) : (
-              /* Category with NO subcategories: Show "Shop [Category]" Hero */
               <div className="h-full w-full flex relative rounded-2xl overflow-hidden group">
                 {activeCategory.image ? (
                   <Image

@@ -6,10 +6,8 @@ export const useProductFilter = (defaultCategory: string = "All") => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  // Get active category from URL or default
   const activeCategory = searchParams.get("category") || defaultCategory;
 
-  // Function to update URL without reload
   const setCategory = useCallback(
     (category: string) => {
       const params = new URLSearchParams(searchParams.toString());

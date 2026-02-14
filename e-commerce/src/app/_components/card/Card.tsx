@@ -60,7 +60,7 @@ export default function Card() {
             : "flex flex-wrap justify-center md:justify-start items-center gap-4 my-5"
         }`}
       >
-        {categories.map((category , index) => (
+        {categories.map((category, index) => (
           <button
             key={index}
             onClick={() => handleCategoryChange(category)}
@@ -156,7 +156,7 @@ export default function Card() {
                       {/* Content */}
                       <div className="flex flex-col gap-1 px-1">
                         <h3
-                          className="text-lg font-bold text-black line-clamp-1 text-left"
+                          className="text-lg font-bold text-black line-clamp-1 text-start"
                           title={product.title}
                         >
                           {product.title?.split(" ").slice(0, 3).join(" ") ||

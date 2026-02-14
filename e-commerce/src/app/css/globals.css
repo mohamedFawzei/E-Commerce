@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "tailwindcss-animate";
 @import "swiper/css";
 @layer utilities {
   .no-scrollbar::-webkit-scrollbar {
@@ -12,7 +13,7 @@
 }
 
 body {
-  background-color: #ffffff;
+  background-color: #eaeded;
   color: #000000;
 }
 
