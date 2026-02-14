@@ -28,42 +28,42 @@ export default function Footer() {
               Reach out to us through any of these support channels
             </p>
           </div>
-          <div className="flex flex-wrap justify-center gap-6 md:gap-12">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm text-gray-400">
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-6 md:gap-12 w-full sm:w-auto">
+            <div className="flex items-center gap-3 w-full sm:w-auto justify-start sm:justify-center px-4 sm:px-0">
+              <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm text-gray-400 shrink-0">
                 <HelpCircle size={20} />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col text-left">
                 <span className="text-xs text-gray-400 uppercase tracking-wider font-semibold">
                   Help Center
                 </span>
-                <span className="text-sm font-bold text-gray-900 hover:underline cursor-pointer">
+                <span className="text-sm font-bold text-gray-900 hover:underline cursor-pointer break-all">
                   <Link href="mailto:mohamedfawzeix@gmail.com" target="_blank">
                     mohamedfawzeix@gmail.com
                   </Link>
                 </span>
               </div>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm text-gray-400">
+            <div className="flex items-center gap-3 w-full sm:w-auto justify-start sm:justify-center px-4 sm:px-0">
+              <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm text-gray-400 shrink-0">
                 <Mail size={20} />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col text-left">
                 <span className="text-xs text-gray-400 uppercase tracking-wider font-semibold">
                   Email Support
                 </span>
-                <span className="text-sm font-bold text-gray-900 hover:underline cursor-pointer">
+                <span className="text-sm font-bold text-gray-900 hover:underline cursor-pointer break-all">
                   <Link href="mailto:muhammadfawzei@gmail.com" target="_blank">
                     muhammadfawzei@gmail.com
                   </Link>
                 </span>
               </div>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm text-gray-400">
+            <div className="flex items-center gap-3 w-full sm:w-auto justify-start sm:justify-center px-4 sm:px-0">
+              <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm text-gray-400 shrink-0">
                 <Phone size={20} />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col text-left">
                 <span className="text-xs text-gray-400 uppercase tracking-wider font-semibold">
                   Phone Support
                 </span>

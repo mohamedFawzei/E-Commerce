@@ -162,7 +162,9 @@ export default function LoginPage() {
           <div className="mt-4">
             <div className="flex items-center text-[13px] text-gray-600 cursor-pointer hover:text-[#c45500]">
               <span className="mr-1">▸</span>
-              <span className="group-hover:underline">Need help?</span>
+              <Link href="/account-issues">
+                <span className="hover:underline">Need help?</span>
+              </Link>
             </div>
           </div>
         </form>

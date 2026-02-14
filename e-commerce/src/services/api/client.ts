@@ -30,8 +30,7 @@ class ApiClient {
 }
 
 const getBaseUrl = () => {
-  if (typeof window !== "undefined") return ""; // Browser: use relative path
-  return process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"; // Server: use absolute path
+  return process.env.NEXT_PUBLIC_API_URL || "";
 };
 
-export const apiClient = new ApiClient(`${getBaseUrl()}/api/v1`);
+export const apiClient = new ApiClient(getBaseUrl());
