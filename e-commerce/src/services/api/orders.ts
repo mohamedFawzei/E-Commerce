@@ -51,7 +51,7 @@ export async function createCheckoutSession(
 
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/orders/checkout-session/${cartId}?url=${appUrl}/allorders?success=true`,
+      `${process.env.NEXT_PUBLIC_API_URL || "https://ecommerce.routemisr.com/api/v1"}/orders/checkout-session/${cartId}?url=${appUrl}/allorders?success=true`,
       {
         method: "POST",
         headers: {
@@ -78,7 +78,7 @@ export async function getUserOrders() {
     const userId = decoded.id;
 
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/orders/user/${userId}`,
+      `${process.env.NEXT_PUBLIC_API_URL || "https://ecommerce.routemisr.com/api/v1"}/orders/user/${userId}`,
       {
         method: "GET",
         headers: {

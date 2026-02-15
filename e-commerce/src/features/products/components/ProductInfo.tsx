@@ -6,6 +6,9 @@ import { Heart, Share2, Star } from "lucide-react";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { useCart } from "@/context/CartContext";
+import AddToCartButton from "@/components/shared/product/add-to-cart";
+import { useCartLoading } from "@/components/providers/cart-loading-provider";
+import { Loader2 } from "lucide-react";
 
 import { useRouter } from "@/i18n/routing";
 
@@ -18,6 +21,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
   const t = useTranslations("ProductDetails");
   const tCard = useTranslations("ProductCard");
   const { addToCart } = useCart();
+  const { isAddingToCart, setIsAddingToCart } = useCartLoading();
   const router = useRouter();
 
   return (
@@ -121,26 +125,34 @@ export default function ProductInfo({ product }: ProductInfoProps) {
 
       {/* Actions */}
       <div className="flex flex-col gap-3 pt-2">
-        <Button
-          onClick={() => {
-            const id = product._id || product.id;
-            if (id) addToCart(id);
-          }}
+        <AddToCartButton
+          productId={product._id || product.id!}
           className="w-full h-14 text-lg font-bold bg-yellow-400 cursor-pointer hover:bg-yellow-500 text-black border-none rounded-xl shadow-lg shadow-yellow-400/20 transition-all active:scale-[0.99]"
         >
           {t("addToCart")}
-        </Button>
+        </AddToCartButton>
         <Button
           variant="outline"
+          disabled={isAddingToCart}
           onClick={async () => {
             const id = product._id || product.id;
-            if (id) {
-              await addToCart(id);
-              router.push("/checkout");
+            if (id && !isAddingToCart) {
+              setIsAddingToCart(true);
+              try {
+                const res = await addToCart(id);
+                if (res?.status === "success" || res?.message === "success") {
+                  router.push("/checkout");
+                }
+              } finally {
+                setIsAddingToCart(false);
+              }
             }
           }}
           className="w-full h-14 text-lg font-bold border-2 cursor-pointer rounded-xl hover:bg-white transition-all active:scale-[0.99]"
         >
+          {isAddingToCart ? (
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          ) : null}
           {t("buyNow")}
         </Button>
       </div>

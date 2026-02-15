@@ -29,7 +29,7 @@ interface CartContextType {
   closeSidebar: () => void;
   updateCartCount: () => Promise<void>;
   setCartCount: (count: number) => void;
-  addToCart: (productId: string) => Promise<void>;
+  addToCart: (productId: string) => Promise<any>;
   removeItem: (productId: string) => Promise<void>;
   updateItemCount: (productId: string, count: number) => Promise<void>;
   clearClientCart: () => Promise<void>;
@@ -74,29 +74,18 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   };
 
   const addToCart = async (productId: string) => {
-    const toastId = toast.loading("Adding to cart...");
     try {
       const res = await apiAddToCart(productId);
       if (res?.status === "success" || res?.message === "success") {
-        toast.success(res.message || "Product added successfully", {
-          id: toastId,
-        });
         await updateCartCount();
         openSidebar();
+        return res;
       } else {
-        if (res?.message === "No token found") {
-          toast.error("You must login first", { id: toastId });
-          setTimeout(() => {
-            router.push("/login");
-          }, 1000);
-          return;
-        }
-        toast.error(res?.message || "Failed to add product", {
-          id: toastId,
-        });
+        return res;
       }
     } catch (error) {
-      toast.error("Something went wrong", { id: toastId });
+      console.error("Error adding to cart", error);
+      return { status: "error", message: "Something went wrong" };
     }
   };
 

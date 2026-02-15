@@ -49,7 +49,7 @@ export default function Navbar({
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full border-b bg-white">
+      <header className="sticky top-0 z-40 w-full border-b border-gray-100 bg-white shadow-sm">
         <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
           {/*  Mobile Menu & Logo */}
           <div className="flex items-center gap-4">

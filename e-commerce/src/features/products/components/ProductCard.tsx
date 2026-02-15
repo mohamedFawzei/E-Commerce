@@ -4,10 +4,10 @@ import Image from "next/image";
 import StarRating from "@/components/common/StarRating";
 import Link from "next/link";
 import { Product } from "@/types/product";
-import { useCart } from "@/context/CartContext";
 import { useTranslations } from "next-intl";
 import { Heart } from "lucide-react";
 import { useWishlist } from "@/context/WishlistContext";
+import AddToCartButton from "@/components/shared/product/add-to-cart";
 
 interface ProductCardProps {
   product: Product;
@@ -19,40 +19,34 @@ export default function ProductCard({
   className = "",
 }: ProductCardProps) {
   const t = useTranslations("ProductCard");
-  const { addToCart } = useCart();
   const { isInWishlist, toggleWishlist } = useWishlist();
 
   return (
     <div
-      className={`group relative rounded-2xl flex flex-col h-full bg-white overflow-hidden transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-transparent hover:border-gray-100 shadow-lg mb-1 ${className}`}
+      className={`group relative rounded-xl flex flex-col h-full bg-white overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border border-gray-100 shadow-sm ${className}`}
     >
       {/* Image Container */}
-      <div className="relative h-[300px]! w-full bg-gray-50 overflow-hidden">
+      <div className="relative aspect-square w-full bg-white overflow-hidden p-4">
         <Link
           href={`/products/${product._id || product.id}`}
-          className="block w-full h-full"
+          className="block w-full h-full relative"
         >
           <Image
-            width={500}
-            height={625}
+            fill
             loading="lazy"
             src={product.imageCover}
             alt={product.title || "product"}
-            className="object-cover w-full h-full! text-transparent transition-transform duration-700 ease-out group-hover:scale-105"
+            className="object-contain w-full h-full transition-transform duration-500 ease-out group-hover:scale-105"
+            sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
           />
         </Link>
 
         {/* Actions Overlay */}
-        <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-in-out pointer-events-none group-hover:pointer-events-auto">
-          <button
-            onClick={() => {
-              const id = product._id || product.id;
-              if (id) addToCart(id);
-            }}
-            className="w-full py-3 cursor-pointer bg-white/90 backdrop-blur-sm text-black font-semibold text-sm rounded-lg shadow-lg hover:bg-black hover:text-white transition-colors duration-200 border border-black/5"
-          >
-            {t("addToCart")}
-          </button>
+        <div className="absolute inset-x-0 bottom-4 px-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-in-out pointer-events-none group-hover:pointer-events-auto z-20">
+          <AddToCartButton
+            productId={product._id || product.id!}
+            className="w-full py-2.5 cursor-pointer bg-black text-white font-medium text-sm rounded-lg shadow-lg hover:bg-gray-800 transition-colors duration-200"
+          />
         </div>
 
         {/* Badge*/}

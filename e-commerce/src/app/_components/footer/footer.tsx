@@ -21,7 +21,7 @@ export default function Footer() {
   return (
     <footer className="bg-white border-t border-gray-100 font-sans cursor-default">
       {/* 1. Top Support Bar */}
-      <div className="bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+      <div className="bg-white border-b border-gray-100 py-8 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-center md:text-start">
             <h3 className="text-lg font-bold text-gray-900">{t("help")}</h3>
@@ -515,7 +515,7 @@ export default function Footer() {
       </div>
 
       {/* 3. Connect & App Buttons */}
-      <div className="bg-gray-50 py-8 px-4 sm:px-6 lg:px-8 border-t border-b border-gray-200">
+      <div className="bg-white py-8 px-4 sm:px-6 lg:px-8 border-t border-b border-gray-100">
         <div className="mx-auto max-w-7xl flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex flex-col sm:flex-row items-center gap-6">
             <span className="font-bold text-gray-900 uppercase text-sm">
@@ -550,7 +550,7 @@ export default function Footer() {
       </div>
 
       {/* 4. Bottom Copyright & Payments */}
-      <div className="bg-gray-50 py-6 px-4 sm:px-6 lg:px-8">
+      <div className="bg-white py-6 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
           <p>&copy; 2026 Omnibuy. {t("rightsReserved")}</p>
 

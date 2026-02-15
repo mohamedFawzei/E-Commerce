@@ -1,9 +1,8 @@
-import Link from "next/link";
-import Image from "next/image";
+import AddToCartButton from "@/components/shared/product/add-to-cart";
 import { Product } from "@/types/product";
-import StarRating from "@/components/common/StarRating";
-import { useCart } from "@/context/CartContext";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
+import Link from "next/link";
 
 interface MobileCardProps {
   product: Product;
@@ -15,14 +14,13 @@ export default function MobileCard({
   className = "",
 }: MobileCardProps) {
   const t = useTranslations("ProductCard");
-  const { addToCart } = useCart();
 
   return (
     <div
       className={`group relative flex flex-col h-full bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 ${className}`}
     >
       {/* Image Container */}
-      <div className="relative h-[180px] w-full bg-gray-50 overflow-hidden">
+      <div className="relative h-[180px] w-full bg-white overflow-hidden">
         <Link
           href={`/products/${product._id || product.id}`}
           className="block w-full h-full"
@@ -32,7 +30,7 @@ export default function MobileCard({
             alt={product.title}
             fill
             sizes="(max-width: 768px) 50vw, 33vw"
-            className="object-cover w-full h-full text-transparent transition-transform duration-700 ease-out"
+            className="object-contain w-full h-full text-transparent transition-transform duration-700 ease-out"
             loading="lazy"
           />
         </Link>
@@ -57,7 +55,7 @@ export default function MobileCard({
           </h3>
         </Link>
 
-        <div className="mt-auto flex items-end justify-between gap-1 border-t border-gray-50 pt-2">
+        <div className="mt-auto flex items-end justify-between gap-1 border-t border-gray-100 pt-2">
           {product.priceAfterDiscount ? (
             <div className="flex flex-col items-start">
               <span className="text-base font-bold text-red-600 whitespace-nowrap leading-none">
@@ -83,15 +81,13 @@ export default function MobileCard({
           </div>
         </div>
 
-        <button
-          onClick={() => {
-            const id = product._id || product.id;
-            if (id) addToCart(id);
-          }}
+        <AddToCartButton
+          productId={product._id || product.id!}
           className="w-full mt-2 bg-black active:scale-95 text-white text-xs py-2 rounded-lg font-medium transition-all"
+          showIcon
         >
           {t("add")}
-        </button>
+        </AddToCartButton>
       </div>
     </div>
   );

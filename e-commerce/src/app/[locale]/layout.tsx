@@ -51,9 +51,9 @@ export default async function RootLayout({
       : `${geistSans.variable} ${geistMono.variable}`;
 
   return (
-    <html lang={locale} dir={dir}>
+    <html lang={locale} dir={dir} className="overflow-x-hidden">
       <body
-        className={`${fontClass} antialiased overflow-x-hidden`}
+        className={`${fontClass} antialiased overflow-x-hidden bg-white min-h-screen`}
         suppressHydrationWarning={true}
       >
         <NextIntlClientProvider messages={messages}>

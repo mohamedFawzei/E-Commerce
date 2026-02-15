@@ -8,11 +8,10 @@ import { Product } from "@/types/product";
 import Image from "next/image";
 import { Signout } from "@/app/api/auth/signout";
 import { ChevronRight } from "lucide-react";
-import { useCart } from "@/context/CartContext";
+import AddToCartButton from "@/components/shared/product/add-to-cart";
 
 export default function AccountDropdown() {
   const t = useTranslations("Navbar");
-  const { addToCart } = useCart();
   const [buyAgainProducts, setBuyAgainProducts] = useState<Product[]>([]);
 
   useEffect(() => {
@@ -82,15 +81,12 @@ export default function AccountDropdown() {
                     <div className="font-bold text-red-700 text-sm">
                       {product.price} {t("currency") || "EGP"}
                     </div>
-                    <button
-                      onClick={() => {
-                        const id = product._id || product.id;
-                        if (id) addToCart(id);
-                      }}
+                    <AddToCartButton
+                      productId={product._id || product.id!}
                       className="mt-1 text-xs bg-yellow-400 hover:bg-yellow-500 border border-yellow-500 rounded-full px-3 py-0.5 text-gray-900 shadow-sm w-full transition-colors"
                     >
                       {t("addToCart") || "Add to cart"}
-                    </button>
+                    </AddToCartButton>
                   </div>
                 </div>
               ))

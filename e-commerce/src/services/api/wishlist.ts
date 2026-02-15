@@ -3,7 +3,7 @@
 import { cookies } from "next/headers";
 import { Product } from "@/types/product";
 
-const BASE_URL = `${process.env.NEXT_PUBLIC_API_URL}/wishlist`;
+const BASE_URL = `${process.env.NEXT_PUBLIC_API_URL || "https://ecommerce.routemisr.com/api/v1"}/wishlist`;
 
 async function getToken() {
   const cookieStore = await cookies();

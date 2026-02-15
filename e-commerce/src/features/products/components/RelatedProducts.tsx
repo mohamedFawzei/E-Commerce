@@ -28,6 +28,7 @@ export default async function RelatedProducts({
         products={relatedProducts}
         title={t("relatedProducts")}
         showFilters={false}
+        enableGrid={true}
       />
     </div>
   );

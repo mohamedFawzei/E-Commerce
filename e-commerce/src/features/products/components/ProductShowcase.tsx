@@ -14,14 +14,16 @@ interface ProductShowcaseProps {
   products: Product[];
   title?: string;
   showFilters?: boolean;
+  enableGrid?: boolean;
 }
 
 import { useTranslations } from "next-intl";
 
 export default function ProductShowcase({
   products = [],
-  title, 
+  title,
   showFilters = true,
+  enableGrid = false,
 }: ProductShowcaseProps) {
   const t = useTranslations("ProductShowcase");
   const tCommon = useTranslations("Common");
@@ -30,7 +32,6 @@ export default function ProductShowcase({
   const { activeCategory, setCategory } = useProductFilter("All");
   const [isAnimating, setIsAnimating] = useState(false);
   const { isMobile } = useWindowSize();
-
 
   const categories = useMemo(() => {
     if (!products) return [{ _id: "all", name: "All", image: "" }];
@@ -45,7 +46,7 @@ export default function ProductShowcase({
         uniqueCategories.set(p.category.name, {
           _id: p.category._id,
           name: p.category.name,
-          image: p.category.image || p.imageCover, 
+          image: p.category.image || p.imageCover,
         });
       }
     });
@@ -163,18 +164,24 @@ export default function ProductShowcase({
       >
         {filteredProducts.length > 0 ? (
           <>
-            {isMobile ? (
-              // Mobile View
-              <div className="grid grid-cols-2 gap-3 pb-8">
+            {isMobile || enableGrid ? (
+              // Mobile View OR Grid Enabled
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 pb-8">
                 {filteredProducts.map((product) => (
-                  <MobileCard
+                  <div
                     key={product._id || product.id || Math.random()}
-                    product={product}
-                  />
+                    className="h-full"
+                  >
+                    {isMobile ? (
+                      <MobileCard product={product} />
+                    ) : (
+                      <ProductCard product={product} />
+                    )}
+                  </div>
                 ))}
               </div>
             ) : (
-              // Desktop View
+              // Desktop View with Swiper (when enableGrid is false)
               <Swiper
                 key={activeCategory}
                 slidesPerView={1}

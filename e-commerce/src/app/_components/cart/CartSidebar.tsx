@@ -51,7 +51,7 @@ export default function CartSidebar() {
       {/* Sidebar */}
       <div
         ref={sidebarRef}
-        className="w-full max-w-md bg-white h-full shadow-2xl flex flex-col transform transition-transform duration-300 ease-out animate-in slide-in-from-right"
+        className="w-full max-w-md bg-white h-full shadow-2xl flex flex-col transform transition-transform duration-300 ease-out animate-in slide-in-from-right overflow-x-hidden"
       >
         {/* Header */}
         <div className="p-4 bg-gray-50 border-b flex items-center justify-between">

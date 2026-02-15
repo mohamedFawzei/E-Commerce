@@ -47,7 +47,7 @@ export default function BrandClientPage({
   }, [allProducts, isElectronics, brand.name]);
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20">
+    <div className="min-h-screen bg-white pb-20">
       {/* 1. Full-Width Brand Hero Section */}
       <div className="relative w-full h-[50vh] md:h-[70vh] flex items-end">
         <div className="absolute inset-0 bg-black/5" />
@@ -108,7 +108,7 @@ export default function BrandClientPage({
           </h2>
 
           {products.length > 0 ? (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
               {products.map((product) => (
                 <div
                   key={product._id}

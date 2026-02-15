@@ -112,7 +112,9 @@ class ApiClient {
 }
 
 const getBaseUrl = () => {
-  return process.env.NEXT_PUBLIC_API_URL || "";
+  return (
+    process.env.NEXT_PUBLIC_API_URL || "https://ecommerce.routemisr.com/api/v1"
+  );
 };
 
 export const apiClient = new ApiClient(getBaseUrl());
