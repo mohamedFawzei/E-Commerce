@@ -10,7 +10,7 @@ Designed with performance and scalability in mind, it leverages the latest Next.
 
 ## Live Demo
 
-🚀 **View Live Demo:** [https://ecommerce-pi-seven-36.vercel.app](https://ecommerce-pi-seven-36.vercel.app)
+🚀 **View Live Demo:** [https://e-commerce-woad-eta-93.vercel.app/en](https://e-commerce-woad-eta-93.vercel.app/en)
 ---
 
 ## Key Features
@@ -126,8 +126,8 @@ npm start
 **Mohamed Fawzei**
 
 - **Role**: Frontend Developer | Next.js - TypeScript
-- **LinkedIn**: [Link to LinkedIn](www.linkedin.com/in/mohamed--fawzi)
+- **LinkedIn**: [Link to LinkedIn](https://www.linkedin.com/in/mohamed--fawzi/)
 - **GitHub**: [Link to GitHub](https://github.com/mohamedFawzei)
-- **Phone**: [Whats App](01066587947)
+- **Phone**: [01066587947](01066587947)
 
 
