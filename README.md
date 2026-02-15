@@ -1,6 +1,6 @@
 # Modern E-Commerce Platform
 
-![E-Commerce Banner](../Design/Banner.png)
+![E-Commerce Banner](./Design/Banner.png)
 
 ## Project Description
 
@@ -115,9 +115,9 @@ npm start
 
 |                                          Home Page                                          |                                      Products Page                                      |
 | :-----------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------: |
-|       ![Home Page](../Design/Home%20page.png)       | ![Products Page](../Design/Product%20page.png) |
+|       ![Home Page](./Design/Home%20page.png)       | ![Products Page](./Design/Product%20page.png) |
 |                                     **Brand Page**                                     |                                    **Checkout Page**                                    |
-| ![Brand Page](../Design/Brand%20Page.png) | ![Checkout Page](../Design/Checkout%20page.png) |
+| ![Brand Page](./Design/Brand%20Page.png) | ![Checkout Page](./Design/Checkout%20page.png) |
 
 ---
 
@@ -128,5 +128,6 @@ npm start
 - **Role**: Frontend Developer | Next.js - TypeScript
 - **LinkedIn**: [Link to LinkedIn](www.linkedin.com/in/mohamed--fawzi)
 - **GitHub**: [Link to GitHub](https://github.com/mohamedFawzei)
+- **Phone**: [Whats App](01066587947)
 
 
