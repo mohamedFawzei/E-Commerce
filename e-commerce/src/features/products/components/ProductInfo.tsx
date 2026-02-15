@@ -30,7 +30,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="text-sm font-semibold tracking-wide text-blue-600 hover:text-blue-700 uppercase cursor-pointer">
-            {product.brand?.name || t("brand")}
+            {product?.brand?.name || t("brand")}
           </h3>
           <div className="flex items-center gap-2">
             <button
@@ -45,7 +45,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
         </div>
 
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight">
-          {product.title}
+          {product?.title}
         </h1>
 
         {/* Rating */}
@@ -53,12 +53,12 @@ export default function ProductInfo({ product }: ProductInfoProps) {
           <div className="flex items-center gap-1 bg-yellow-400/10 px-2 py-1 rounded-md">
             <Star className="w-4 h-4 text-yellow-500 fill-current" />
             <span className="font-bold text-yellow-700">
-              {product.ratingsAverage}
+              {product?.ratingsAverage || 0}
             </span>
           </div>
           <span className="text-gray-300">|</span>
           <span className="text-sm font-medium text-gray-500 hover:text-gray-700 cursor-pointer underline-offset-4 hover:underline">
-            {product.ratingsQuantity} {t("ratings")}
+            {product?.ratingsQuantity || 0} {t("ratings")}
           </span>
         </div>
       </div>
@@ -68,7 +68,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
       {/* Price */}
       <div className="space-y-2">
         <div className="flex items-baseline gap-3">
-          {product.priceAfterDiscount ? (
+          {product?.priceAfterDiscount ? (
             <>
               <span className="text-3xl md:text-4xl font-bold text-red-600">
                 {product.priceAfterDiscount.toLocaleString()}{" "}
@@ -77,12 +77,12 @@ export default function ProductInfo({ product }: ProductInfoProps) {
                 </span>
               </span>
               <span className="text-lg text-gray-400 line-through decoration-gray-300">
-                {product.price.toLocaleString()} {tCard("currency")}
+                {product?.price?.toLocaleString()} {tCard("currency")}
               </span>
             </>
           ) : (
             <span className="text-3xl md:text-4xl font-bold text-gray-900">
-              {product.price.toLocaleString()}{" "}
+              {product?.price?.toLocaleString()}{" "}
               <span className="text-lg font-medium text-gray-500">
                 {tCard("currency")}
               </span>
@@ -98,7 +98,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
       <div className="space-y-4">
         <h3 className="font-semibold text-gray-900 text-lg">{t("about")}</h3>
         <p className="text-gray-600 leading-relaxed text-base">
-          {product.description}
+          {product?.description}
         </p>
       </div>
 
@@ -109,7 +109,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
             {t("category")}
           </span>
           <span className="font-medium text-gray-900 bg-gray-50 w-fit px-3 py-1 rounded-full text-sm">
-            {product.category?.name}
+            {product?.category?.name}
           </span>
         </div>
         <div className="flex flex-col gap-1.5">
@@ -118,7 +118,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
           </span>
           <span className="font-medium text-green-600 flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-            {product.quantity} {t("inStock")}
+            {product?.quantity || 0} {t("inStock")}
           </span>
         </div>
       </div>

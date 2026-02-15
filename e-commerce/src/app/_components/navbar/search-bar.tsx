@@ -28,6 +28,7 @@ export default function SearchBar({
 
   const router = useRouter();
   const t = useTranslations("Navbar");
+  const tCategories = useTranslations("CategoryNames");
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -116,7 +117,7 @@ export default function SearchBar({
             <option value="">{t("allCategories") || "All"}</option>
             {categories.map((cat) => (
               <option key={cat._id} value={cat._id}>
-                {cat.name}
+                {tCategories.has(cat.slug) ? tCategories(cat.slug) : cat.name}
               </option>
             ))}
           </select>

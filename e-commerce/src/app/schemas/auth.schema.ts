@@ -6,10 +6,7 @@ export const loginschema = z.object({
     .email({ message: "Enter a valid email address" })
     .min(1, { message: "Enter your email" }),
 
-  password: z
-    .string()
-    .nonempty({ message: "Enter Correct password" })
-    .min(8, { message: "Password must be at least 8 characters" }),
+  password: z.string().nonempty({ message: "Password is required" }).min(8),
 });
 
 export const signupSchema = z
@@ -24,8 +21,8 @@ export const signupSchema = z
       .min(1, { message: "Enter your email" }),
     password: z
       .string()
-      .nonempty({ message: "Enter Correct password" })
-      .min(6, { message: "Password must be at least 6 characters" })
+      .nonempty({ message: "Password is required" })
+      .min(8, { message: "Password must be at least 8 characters" })
       .regex(/^[A-Z][A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/, {
         message: "Password must start with uppercase",
       }),

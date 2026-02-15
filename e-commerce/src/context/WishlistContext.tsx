@@ -1,6 +1,7 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, useRef } from "react";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import {
   getWishlist,
@@ -12,7 +13,7 @@ import { useRouter } from "next/navigation";
 
 interface WishlistContextType {
   wishlistItems: string[];
-  wishlistProducts: Product[]; 
+  wishlistProducts: Product[];
   count: number;
   loading: boolean;
   isInWishlist: (productId: string) => boolean;
@@ -31,7 +32,34 @@ export function WishlistProvider({ children }: { children: React.ReactNode }) {
   const [wishlistProducts, setWishlistProducts] = useState<Product[]>([]);
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(false);
+
   const router = useRouter();
+  const t = useTranslations("Wishlist");
+  const toastTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const pendingUpdatesRef = useRef({ added: 0, removed: 0 });
+
+  const scheduleToast = () => {
+    if (toastTimeoutRef.current) {
+      clearTimeout(toastTimeoutRef.current);
+    }
+
+    toastTimeoutRef.current = setTimeout(() => {
+      const { added, removed } = pendingUpdatesRef.current;
+
+      if (added > 0) {
+        if (added === 1) toast.success("Added to wishlist");
+        else toast.success(t("addedMultiple", { count: added }));
+      }
+
+      if (removed > 0) {
+        if (removed === 1) toast.success("Removed from wishlist");
+        else toast.success(t("removedMultiple", { count: removed }));
+      }
+
+      pendingUpdatesRef.current = { added: 0, removed: 0 };
+      toastTimeoutRef.current = null;
+    }, 1500);
+  };
 
   const updateWishlist = async () => {
     try {
@@ -47,8 +75,7 @@ export function WishlistProvider({ children }: { children: React.ReactNode }) {
         setCount(0);
       }
     } catch (error) {
-      //   console.error("Failed to update wishlist", error);
-    
+      console.error("Failed to update wishlist", error);
     } finally {
       setLoading(false);
     }
@@ -64,8 +91,9 @@ export function WishlistProvider({ children }: { children: React.ReactNode }) {
     try {
       const res = await apiAddToWishlist(productId);
       if (res?.status === "success") {
-        toast.success("Added to wishlist");
-        
+        pendingUpdatesRef.current.added += 1;
+        scheduleToast();
+
         await updateWishlist();
       } else {
         if (
@@ -73,7 +101,7 @@ export function WishlistProvider({ children }: { children: React.ReactNode }) {
           (res as any)?.message === "fail"
         ) {
           toast.error("Please login first");
-          
+
           setWishlistItems(previousItems);
           setCount(previousItems.length);
           router.push("/login");
@@ -99,7 +127,8 @@ export function WishlistProvider({ children }: { children: React.ReactNode }) {
     try {
       const res = await apiRemoveFromWishlist(productId);
       if (res?.status === "success") {
-        toast.success("Removed from wishlist");
+        pendingUpdatesRef.current.removed += 1;
+        scheduleToast();
         await updateWishlist();
       } else {
         throw new Error(res?.message || "Failed to remove");

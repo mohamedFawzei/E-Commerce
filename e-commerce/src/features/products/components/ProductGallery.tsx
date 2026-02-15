@@ -21,6 +21,7 @@ export default function ProductGallery({
   images = [],
   title,
 }: ProductGalleryProps) {
+  const safeImages = images || [];
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
   const t = useTranslations("ProductDetails");
 
@@ -41,7 +42,7 @@ export default function ProductGallery({
           modules={[FreeMode, Navigation, Thumbs]}
           className="h-full w-full"
         >
-          {images.map((img, index) => (
+          {safeImages.map((img, index) => (
             <SwiperSlide key={index}>
               <div className="relative w-full h-full flex items-center justify-center bg-white">
                 <Image
@@ -68,7 +69,7 @@ export default function ProductGallery({
         modules={[FreeMode, Navigation, Thumbs]}
         className="w-full h-24"
       >
-        {images.map((img, index) => (
+        {safeImages.map((img, index) => (
           <SwiperSlide key={index}>
             <div className="relative w-full h-full border border-gray-200 rounded-md overflow-hidden cursor-pointer hover:border-black transition-colors bg-white">
               <Image

@@ -14,6 +14,7 @@
     "selectCategory": "اختر الفئة",
     "suggestions": "اقتراحات",
     "hello": "مرحبا، {name}",
+    "greeting": "مرحبا",
     "accountLists": "الحساب والقوائم",
     "returnsOrders": "المرتجعات والطلبات",
     "buyItAgain": "اشترِ مرة أخرى",
@@ -35,7 +36,8 @@
     "whoShopping": "من يتسوق؟ اختر ملفًا شخصيًا.",
     "currency": "ج.م",
     "addToCart": "أضف إلى العربة",
-    "loading": "جار التحميل..."
+    "loading": "جار التحميل...",
+    "menu": "القائمة"
   },
   "AccountPage": {
     "title": "حسابك",
@@ -162,6 +164,7 @@
     "failedToLoad": "فشل تحميل المراجعات"
   },
   "ProductCard": {
+    "successAdd": "تمت الإضافة بنجاح",
     "addToCart": "أضف إلى العربة",
     "add": "إضافة",
     "sale": "خصم",
@@ -269,5 +272,22 @@
     "manageAddress": "إدارة دفتر العناوين",
     "changeDetails": "تغيير الاسم، البريد الإلكتروني، أو كلمة المرور",
     "placeholderSelection": "< الرجاء الاختيار >"
+  },
+  "Wishlist": {
+    "addedMultiple": "تمت إضافة {count} عناصر للمفضلة",
+    "removedMultiple": "تمت إزالة {count} عناصر من المفضلة",
+    "loginRequired": "يرجى تسجيل الدخول أولاً"
+  },
+  "CategoryNames": {
+    "music": "موسيقى",
+    "mens-fashion": "أزياء رجالية",
+    "womens-fashion": "أزياء نسائية",
+    "supermarket": "سوبر ماركت",
+    "baby-and-toys": "أطفال وألعاب",
+    "home": "المنزل",
+    "books": "كتب",
+    "beauty-and-health": "جمال وصحة",
+    "mobiles": "موبايلات",
+    "electronics": "إلكترونيات"
   }
 }

@@ -31,50 +31,46 @@ export async function generateStaticParams() {
 export default async function ProductPage({ params }: PageProps) {
   const { id } = await params;
 
+  let product = null;
+
   try {
-    // 1. Safe Data Fetching
     const response = await getProductById(id);
-
-    // 2. Check Valid API Response
-    if (!response || !response.data) {
-      notFound();
+    if (response?.data) {
+      product = response.data;
     }
-
-    const product = response.data;
-
-    if (!product) {
-      notFound();
-    }
-
-    const cookieStore = await cookies();
-    const token = cookieStore.get("token")?.value;
-    let user = null;
-
-    if (token) {
-      try {
-        const decoded = verifyToken(token);
-        if (decoded) {
-          user = { name: decoded.name, id: decoded.id };
-        }
-      } catch (error) {
-        console.error("Auth token verification failed:", error);
-      }
-    }
-
-    return (
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
-        <ProductDetails product={product} />
-        <div className="mt-16">
-          <ProductTestimonials
-            productId={product.id || product._id}
-            token={token}
-            user={user}
-          />
-        </div>
-      </div>
-    );
   } catch (error) {
-    console.error(`Page Error [products/${id}]:`, error);
+    console.error(`Failed to fetch product with id ${id}:`, error);
+  }
+
+  if (!product) {
     notFound();
   }
+
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token")?.value;
+  let user = null;
+
+  if (token) {
+    try {
+      const decoded = verifyToken(token);
+      if (decoded) {
+        user = { name: decoded.name, id: decoded.id };
+      }
+    } catch (error) {
+      console.error("Auth token verification failed:", error);
+    }
+  }
+
+  return (
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+      <ProductDetails product={product} />
+      <div className="mt-16">
+        <ProductTestimonials
+          productId={product.id || product._id}
+          token={token}
+          user={user}
+        />
+      </div>
+    </div>
+  );
 }

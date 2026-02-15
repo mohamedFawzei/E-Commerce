@@ -36,7 +36,8 @@
     "whoShopping": "Who's shopping? Select a profile.",
     "currency": "EGP",
     "addToCart": "Add to Cart",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "menu": "Menu"
   },
   "AccountPage": {
     "title": "Your Account",
@@ -163,6 +164,7 @@
     "failedToLoad": "Failed to load reviews"
   },
   "ProductCard": {
+    "successAdd": "Added Success",
     "addToCart": "Add to Cart",
     "add": "Add",
     "sale": "Sale",
@@ -270,5 +272,22 @@
     "manageAddress": "Manage Address Book",
     "changeDetails": "Change Name, E-mail, or Password",
     "placeholderSelection": "< Please make a selection >"
+  },
+  "Wishlist": {
+    "addedMultiple": "Added {count} items to wishlist",
+    "removedMultiple": "Removed {count} items from wishlist",
+    "loginRequired": "Please login first"
+  },
+  "CategoryNames": {
+    "music": "Music",
+    "mens-fashion": "Men's Fashion",
+    "womens-fashion": "Women's Fashion",
+    "supermarket": "Supermarket",
+    "baby-and-toys": "Baby & Toys",
+    "home": "Home",
+    "books": "Books",
+    "beauty-and-health": "Beauty & Health",
+    "mobiles": "Mobiles",
+    "electronics": "Electronics"
   }
 }

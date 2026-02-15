@@ -12,7 +12,7 @@ interface MobileMenuProps {
   onOpenCategories: () => void;
 }
 
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function MobileMenu({
   isOpen,
@@ -23,6 +23,7 @@ export default function MobileMenu({
   const overlayRef = useRef<HTMLDivElement>(null);
   const linksRef = useRef<HTMLDivElement>(null);
   const locale = useLocale();
+  const t = useTranslations("Navbar");
   const isRtl = locale === "ar";
 
   useGsap(() => {
@@ -70,8 +71,8 @@ export default function MobileMenu({
   }, [isOpen, isRtl]);
 
   const links = [
-    { title: "Brands", href: "/brands" },
-    { title: "Products", href: "/products" },
+    { title: t("brands"), href: "/brands" },
+    { title: t("products"), href: "/products" },
   ];
 
   return (
@@ -89,7 +90,7 @@ export default function MobileMenu({
         className="fixed top-0 start-0 z-50 h-full w-[80%] max-w-[300px] bg-white shadow-xl transform ltr:-translate-x-full rtl:translate-x-full"
       >
         <div className="flex h-16 items-center justify-between px-6 border-b">
-          <span className="text-xl font-bold">Menu</span>
+          <span className="text-xl font-bold">{t("menu")}</span>
           <button
             onClick={onClose}
             className="p-2 hover:bg-gray-100 rounded-full cursor-pointer"
@@ -104,13 +105,13 @@ export default function MobileMenu({
             className="w-full block py-3 text-lg font-medium text-gray-700 hover:text-black border-b border-gray-100"
             onClick={onClose}
           >
-            Home
+            {t("home")}
           </Link>
           <button
             className="w-full text-start block py-3 text-lg font-medium text-gray-700 hover:text-black border-b border-gray-100 cursor-pointer"
             onClick={onOpenCategories}
           >
-            Categories
+            {t("categories")}
           </button>
           {links.map((link) => (
             <Link
