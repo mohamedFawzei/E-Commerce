@@ -10,7 +10,7 @@ Designed with performance and scalability in mind, it leverages the latest Next.
 
 ## Live Demo
 
-🚀 **View Live Demo:** [https://ecommerce-pi-seven-36.vercel.app](https://ecommerce-pi-seven-36.vercel.app)
+🚀 **View Live Demo:** [https://e-commerce-woad-eta-93.vercel.app/en](https://e-commerce-woad-eta-93.vercel.app/en)
 ---
 
 ## Key Features
