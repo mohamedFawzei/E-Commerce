@@ -6,6 +6,7 @@ import { cookies } from "next/headers";
 import { verifyToken } from "@/lib/auth";
 import { CartProvider } from "@/context/CartContext";
 import CartSidebar from "@/app/_components/cart/CartSidebar";
+import MobileBackButton from "@/app/_components/navigation/MobileBackButton";
 
 export default async function Layout({
   children,
@@ -35,6 +36,7 @@ export default async function Layout({
     <>
       {/* S Navbar */}
       <CartProvider>
+        <MobileBackButton />
         <Navbar
           categories={categories}
           subCategories={subCategories}
