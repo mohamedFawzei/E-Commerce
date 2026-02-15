@@ -1,6 +1,6 @@
 # Modern E-Commerce Platform
 
-![E-Commerce Banner](./Design/Banner.png)
+![E-Commerce Banner](./e-commerce/public/images/Design/Banner.png)
 
 ## Project Description
 
@@ -115,9 +115,9 @@ npm start
 
 |                                          Home Page                                          |                                      Products Page                                      |
 | :-----------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------: |
-|       ![Home Page](./Design/Home%20page.png)       | ![Products Page](./Design/Product%20page.png) |
+|       ![Home Page](./e-commerce/public/images/Design/Home%20page.png)       | ![Products Page](./e-commerce/public/images/Design/Product%20page.png) |
 |                                     **Brand Page**                                     |                                    **Checkout Page**                                    |
-| ![Brand Page](./Design/Brand%20Page.png) | ![Checkout Page](./Design/Checkout%20page.png) |
+| ![Brand Page](./e-commerce/public/images/Design/Brand%20Page.png) | ![Checkout Page](./e-commerce/public/images/Design/Checkout%20page.png) |
 
 ---
 

@@ -77,7 +77,7 @@ export default function ProductShowcase({
   }
 
   return (
-    <div className="mx-auto max-w-7xl py-4">
+    <div className="mx-auto max-w-7xl py-4 bg-white">
       <div className="flex flex-col items-center justify-center">
         <SectionTitle title={displayTitle} />
         {/* Filter  */}
