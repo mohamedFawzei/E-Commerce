@@ -126,8 +126,8 @@ npm start
 **Mohamed Fawzei**
 
 - **Role**: Frontend Developer | Next.js - TypeScript
-- **LinkedIn**: [Link to LinkedIn](www.linkedin.com/in/mohamed--fawzi)
+- **LinkedIn**: [Link to LinkedIn](https://www.linkedin.com/in/mohamed--fawzi/)
 - **GitHub**: [Link to GitHub](https://github.com/mohamedFawzei)
-- **Phone**: [Whats App](01066587947)
+- **Phone**: [01066587947](01066587947)
 
 
