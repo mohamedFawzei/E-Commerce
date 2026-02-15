@@ -17,7 +17,10 @@ interface ProductGalleryProps {
   title: string;
 }
 
-export default function ProductGallery({ images, title }: ProductGalleryProps) {
+export default function ProductGallery({
+  images = [],
+  title,
+}: ProductGalleryProps) {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
   const t = useTranslations("ProductDetails");
 

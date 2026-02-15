@@ -16,12 +16,12 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
       <Breadcrumbs
         items={[
           {
-            label: product.category.name,
-            href: isNaN(Number(product.category._id))
-              ? undefined
-              : `/products?category=${product.category._id}`,
+            label: product?.category?.name || "Category",
+            href: product?.category?._id
+              ? `/products?category=${product.category._id}`
+              : undefined,
           },
-          { label: product.category.name },
+          { label: product?.category?.name || "Category" },
           { label: product.title },
         ]}
       />
@@ -41,7 +41,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 
       {/* Related Products */}
       <RelatedProducts
-        categoryId={product.category._id}
+        categoryId={product?.category?._id }
         currentProductId={product._id || product.id || ""}
       />
     </div>

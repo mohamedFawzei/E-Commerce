@@ -30,21 +30,56 @@ export async function getProducts(params?: {
     url += `?${queryString}`;
   }
 
-  const res = await fetch(url);
-  const data = await res.json();
+  try {
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) {
+      console.error(
+        `Failed to fetch products: ${res.status} ${res.statusText} at ${url}`,
+      );
+      return { data: [] };
+    }
+    const data = await res.json();
   //console.log(data);
 
-  return data;
+    return data;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return { data: [] };
+  }
 }
 
 export async function getProductById(id: string) {
-  const res = await fetch(`${api}/products/${id}`);
-  const data = await res.json();
-  return data;
+  const url = `${api}/products/${id}`;
+  try {
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) {
+      console.error(
+        `Failed to fetch product ${id}: ${res.status} ${res.statusText} at ${url}`,
+      );
+      return null;
+    }
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error(`Error fetching product ${id}:`, error);
+    return null;
+  }
 }
 
 export async function getProductsByBrand(brandId: string) {
-  const res = await fetch(`${api}/products?brand=${brandId}`);
-  const data = await res.json();
-  return data;
+  const url = `${api}/products?brand=${brandId}`;
+  try {
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) {
+      console.error(
+        `Failed to fetch products for brand ${brandId}: ${res.status} ${res.statusText} at ${url}`,
+      );
+      return { data: [] };
+    }
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error(`Error fetching products for brand ${brandId}:`, error);
+    return { data: [] };
+  }
 }

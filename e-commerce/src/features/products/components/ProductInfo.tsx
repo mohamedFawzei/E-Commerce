@@ -105,7 +105,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
             {t("category")}
           </span>
           <span className="font-medium text-gray-900 bg-gray-50 w-fit px-3 py-1 rounded-full text-sm">
-            {product.category.name}
+            {product.category?.name}
           </span>
         </div>
         <div className="flex flex-col gap-1.5">
