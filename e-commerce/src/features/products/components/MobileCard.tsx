@@ -7,14 +7,20 @@ import { useTranslations } from "next-intl";
 
 interface MobileCardProps {
   product: Product;
+  className?: string;
 }
 
-export default function MobileCard({ product }: MobileCardProps) {
+export default function MobileCard({
+  product,
+  className = "",
+}: MobileCardProps) {
   const t = useTranslations("ProductCard");
   const { addToCart } = useCart();
 
   return (
-    <div className="group relative flex flex-col h-full bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+    <div
+      className={`group relative flex flex-col h-full bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 ${className}`}
+    >
       {/* Image Container */}
       <div className="relative h-[180px] w-full bg-gray-50 overflow-hidden">
         <Link

@@ -22,7 +22,7 @@ const DepartmentSection: React.FC<DepartmentSectionProps> = ({
   if (!category) return null;
 
   return (
-    <section className="py-4 px-4 sm:px-6 lg:px-8">
+    <section className="py-4 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="mx-auto max-w-7xl">
         <div
           className={`flex flex-col ${

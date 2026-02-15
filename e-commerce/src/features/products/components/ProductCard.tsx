@@ -11,15 +11,21 @@ import { useWishlist } from "@/context/WishlistContext";
 
 interface ProductCardProps {
   product: Product;
+  className?: string;
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({
+  product,
+  className = "",
+}: ProductCardProps) {
   const t = useTranslations("ProductCard");
   const { addToCart } = useCart();
   const { isInWishlist, toggleWishlist } = useWishlist();
 
   return (
-    <div className="group relative  rounded-2xl flex flex-col h-full bg-white  overflow-hidden transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-transparent hover:border-gray-100 ">
+    <div
+      className={`group relative rounded-2xl flex flex-col h-full bg-white overflow-hidden transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-transparent hover:border-gray-100 shadow-lg mb-1 ${className}`}
+    >
       {/* Image Container */}
       <div className="relative h-[300px]! w-full bg-gray-50 overflow-hidden">
         <Link

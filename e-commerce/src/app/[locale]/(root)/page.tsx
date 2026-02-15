@@ -22,7 +22,7 @@ export default async function Home() {
   return (
     <>
       <MySwiper />
-      <div className="container mx-auto">
+      <div className="container mx-auto bg-white">
         {/* Featured Categories */}
         <FeaturedCategories categories={categoriesWithSubs} />
         {/* Products Showcase */}
@@ -31,8 +31,6 @@ export default async function Home() {
         {categoriesWithSubs.length > 2 && (
           <DepartmentSection category={categoriesWithSubs[2]} />
         )}
-        {/* Testimonials */}
-        <Testimonials reviews={reviewsResponse.data} />
       </div>
     </>
   );
