@@ -1,5 +1,5 @@
 import React from "react";
-import { getBrandById } from "@/app/api/getBrands";
+import { getBrandById, getBrands } from "@/app/api/getBrands";
 import { getProductsByBrand, getProducts } from "@/app/api/getProducts";
 import { Product } from "@/types/product";
 import BrandClientPage from "@/features/brands/components/BrandClientPage";
@@ -20,6 +20,13 @@ export async function generateMetadata({
     title: `${brand.data.name} | Brands`,
     description: `Shop products from ${brand.data.name}`,
   };
+}
+
+export async function generateStaticParams() {
+  const brands = await getBrands();
+  return brands.data.map((brand: any) => ({
+    id: brand._id,
+  }));
 }
 
 export default async function BrandDetailsPage({

@@ -1,4 +1,4 @@
-import { getProductById } from "@/app/api/getProducts";
+import { getProductById, getProducts } from "@/app/api/getProducts";
 import ProductDetails from "@/features/products/components/ProductDetails";
 import ProductTestimonials from "@/app/_components/product/ProductTestimonials";
 import { notFound } from "next/navigation";
@@ -9,6 +9,13 @@ interface PageProps {
   params: Promise<{
     id: string;
   }>;
+}
+
+export async function generateStaticParams() {
+  const products = await getProducts();
+  return products.data.map((product: any) => ({
+    id: product._id || product.id,
+  }));
 }
 
 export default async function ProductPage({ params }: PageProps) {
