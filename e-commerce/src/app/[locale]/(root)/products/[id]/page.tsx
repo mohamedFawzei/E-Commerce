@@ -23,7 +23,7 @@ export default async function ProductPage({ params }: PageProps) {
 
   const response = await getProductById(id);
 
-  if (!response?.data) {
+  if (!response || !response.data) {
     notFound();
   }
 

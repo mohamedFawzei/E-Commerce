@@ -47,8 +47,8 @@ export default async function BrandDetailsPage({
   }
 
   const brand = brandData.data;
-  const brandProducts: Product[] = brandProductsData.data;
-  const allProducts: Product[] = allProductsData.data;
+  const brandProducts: Product[] = brandProductsData?.data || [];
+  const allProducts: Product[] = allProductsData?.data || [];
 
   return (
     <BrandClientPage
